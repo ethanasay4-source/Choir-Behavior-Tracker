@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Choir Tracker">
+    <title>IB Choir Participation Tracker</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --surface-elevated: #2a2a2a;
+            --text-color: #ffffff;
+            --text-muted: #9e9e9e;
+            --accent-color: #bb86fc;
+            --danger-color: #cf6679;
+            --warning-color: #f6e05e;
+            --info-color: #63b3ed;
+            --success-color: #03dac6;
+            --kudos-color: #48bb78;
+        }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 14px;
+            user-select: none;
+            -webkit-user-select: none;
+            padding-bottom: 70px;
+        }
+        
+        /* Header & Main Navigation */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #2c2c2c;
+        }
+        .title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .app-title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .quick-save-btn {
+            background-color: rgba(3, 218, 198, 0.15);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .quick-save-btn:active {
+            transform: scale(0.96);
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .tab-btn {
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            border: 2px solid transparent;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            border-color: var(--accent-color);
+            color: var(--text-color);
+            background-color: rgba(187, 134, 252, 0.12);
+        }
+
+        /* Period Bar */
+        .period-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: var(--surface-color);
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            overflow-x: auto;
+        }
+        .period-tabs {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            overflow-x: auto;
+        }
+        .period-tab {
+            background: #141414;
+            color: var(--text-muted);
+            border: 1px solid #2c2c2c;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .period-tab.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+        }
+        .period-add-btn {
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px dashed var(--accent-color);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .period-manage-btn {
+            background: var(--surface-elevated);
+            color: var(--text-color);
+            border: 1px solid #444;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        /* Sub-controls for Podium */
+        .sub-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .view-toggle-group {
+            display: flex;
+            background: var(--surface-color);
+            border-radius: 8px;
+            padding: 3px;
+        }
+        .sub-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .sub-btn.active {
+            background: var(--surface-elevated);
+            color: var(--text-color);
+        }
+        .swap-btn {
+            background-color: var(--surface-color);
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .swap-btn.active {
+            background-color: var(--warning-color);
+            color: #000;
+        }
+
+        /* Views */
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* A-Z Grid */
+        .alpha-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        /* 3-Section, 2-Row Stage Layout */
+        .stage-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .three-sections-container {
+            display: grid;
+            /* Proportional widths (4 : 5 : 4) with a clear 22px visual aisle gap between sections */
+            grid-template-columns: 4fr 5fr 4fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+        @media (max-width: 1024px) {
+            /* If iPad is in Portrait, stack or allow horizontal scroll cleanly */
+            .three-sections-container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+        }
+        .section-block {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid #2d2d2d;
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .section-header {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent-color);
+            padding-bottom: 6px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .row-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .row-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .row-seats-grid {
+            display: grid;
+            gap: 8px;
+        }
+        .cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+        .cols-5 {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .conductor-podium-marker {
+            text-align: center;
+            padding: 10px;
+            background: var(--surface-color);
+            border: 1px dashed #444;
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            max-width: 320px;
+            margin: 4px auto 0 auto;
+            width: 100%;
+        }
+
+        /* Student Card Button */
+        .student-btn {
+            background-color: var(--surface-color);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 10px 4px;
+            color: var(--text-color);
+            font-size: 13.5px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 82px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.08s ease, background-color 0.15s;
+            overflow: hidden;
+        }
+        .student-btn:active {
+            transform: scale(0.95);
+        }
+        .student-btn.absent {
+            opacity: 0.35;
+            background-color: #161616;
+            border-color: #2a2a2a;
+        }
+        .student-btn.tardy {
+            border-color: var(--warning-color);
+        }
+        .student-btn.empty-seat {
+            background-color: rgba(255, 255, 255, 0.015);
+            border: 1px dashed #333;
+            color: #555;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .student-btn.swap-selected {
+            border-color: var(--warning-color);
+            background-color: rgba(246, 224, 94, 0.18);
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.96); }
+            100% { transform: scale(1); }
+        }
+        .student-name {
+            text-align: center;
+            word-break: break-word;
+            line-height: 1.15;
+            margin-top: 4px;
+        }
+        .status-pill {
+            font-size: 9px;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 800;
+            text-transform: uppercase;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
+        .status-pill.tardy {
+            background: var(--warning-color);
+            color: #000;
+        }
+        .status-pill.absent {
+            background: #555;
+            color: #fff;
+        }
+        .badge-row {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            margin-top: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .badge {
+            border-radius: 12px;
+            padding: 2px 7px;
+            font-size: 12px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .badge.deduction {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+        .badge.zero {
+            background-color: #2c2c2c;
+            color: #777;
+        }
+        .badge.kudos {
+            background-color: var(--kudos-color);
+            color: #000;
+        }
+
+        /* Analytics View */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--surface-color);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-top: 4px;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .chart-box {
+            background: var(--surface-color);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        .chart-box h3 {
+            margin: 0 0 14px 0;
+            font-size: 16px;
+        }
+        .bar-row {
+            margin-bottom: 12px;
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .bar-track {
+            background: #2c2c2c;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            background: var(--danger-color);
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+        .bar-fill.day-fill {
+            background: var(--info-color);
+        }
+
+        /* Master List View */
+        .master-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .list-item {
+            background-color: var(--surface-color);
+            padding: 14px 16px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .list-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .ib-score {
+            font-weight: 800;
+            color: var(--accent-color);
+            font-size: 20px;
+            background: rgba(187, 134, 252, 0.12);
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+        .log-details {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+        .action-section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-align: center;
+            font-weight: 700;
+        }
+        .export-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .action-btn {
+            padding: 13px 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            flex: 1;
+            min-width: 145px;
+            max-width: 230px;
+            text-align: center;
+        }
+        .btn-csv { background-color: var(--info-color); color: #000; }
+        .btn-md { background-color: var(--success-color); color: #000; }
+        .btn-copy { background-color: var(--surface-elevated); color: #fff; border: 1px solid #555; }
+        .btn-save-html { background-color: var(--accent-color); color: #000; }
+        .btn-attendance-reset { background-color: #333; color: var(--text-color); }
+        .reset-btn {
+            background-color: var(--danger-color);
+            color: #fff;
+            margin: 4px auto 0 auto;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--surface-color);
+            padding: 20px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            border: 1px solid #333;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-title {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 800;
+        }
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-align: left;
+            margin-top: 6px;
+            font-weight: 700;
+        }
+        .attendance-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            background: #141414;
+            padding: 4px;
+            border-radius: 10px;
+        }
+        .att-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 4px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .att-btn.active.present { background: var(--surface-elevated); color: #fff; }
+        .att-btn.active.tardy { background: var(--warning-color); color: #000; }
+        .att-btn.active.absent { background: #555; color: #fff; }
+
+        .reason-btn {
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #000;
+        }
+        .btn-offtask { background-color: var(--danger-color); color: white; }
+        .btn-unprepared { background-color: var(--warning-color); }
+        .btn-engagement { background-color: var(--info-color); }
+        
+        .kudos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+        .kudos-btn {
+            padding: 10px 6px;
+            border: 1px solid var(--kudos-color);
+            background: rgba(72, 187, 120, 0.12);
+            color: var(--kudos-color);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .modal-footer {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .btn-undo {
+            flex: 1;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+        .btn-cancel {
+            flex: 1;
+            background-color: #333;
+            color: white;
+        }
+        .reason-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Form Inputs for Roster Editor */
+        .input-field, .textarea-field {
+            width: 100%;
+            background: #141414;
+            border: 1px solid #383838;
+            color: #fff;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+        .textarea-field {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            display: none;
+            z-index: 2000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="title-group">
+            <h1 class="app-title">IB Choir Tracker</h1>
+            <button class="quick-save-btn" onclick="saveStateToHTMLFile()">💾 Save App File (.html)</button>
+        </div>
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('podium')">Podium</button>
+            <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+            <button class="tab-btn" onclick="switchTab('master')">IB Master</button>
+        </div>
+    </div>
+
+    <!-- MULTI-PERIOD BAR -->
+    <div class="period-bar">
+        <div class="period-tabs" id="periodTabs"></div>
+        <div style="display:flex; gap:6px;">
+            <button class="period-add-btn" onclick="openPeriodModal(true)">+ Add Period</button>
+            <button class="period-manage-btn" onclick="openPeriodModal(false)">Edit Roster</button>
+        </div>
+    </div>
+
+    <!-- PODIUM VIEW -->
+    <div id="podiumView" class="view-section active">
+        <div class="sub-bar">
+            <div class="view-toggle-group">
+                <button id="btnRiserLayout" class="sub-btn active" onclick="setLayout('riser')">3-Section Riser</button>
+                <button id="btnAlphaLayout" class="sub-btn" onclick="setLayout('alpha')">A–Z Grid</button>
+            </div>
+            <button id="swapModeBtn" class="swap-btn" onclick="toggleSwapMode()">Edit Seating (Swap)</button>
+        </div>
+        <div id="podiumContent"></div>
+    </div>
+
+    <!-- ANALYTICS VIEW -->
+    <div id="analyticsView" class="view-section">
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="chart-box">
+            <h3>Deductions by Category (<span class="current-period-label"></span>)</h3>
+            <div id="categoryCharts"></div>
+        </div>
+        <div class="chart-box">
+            <h3>Deductions by Day of Week (<span class="current-period-label"></span>)</h3>
+            <div id="dayCharts"></div>
+        </div>
+    </div>
+
+    <!-- MASTER VIEW -->
+    <div id="masterView" class="view-section">
+        <div class="master-list" id="masterList"></div>
+        
+        <div class="action-container">
+            <div class="action-section-title">Save & Restore Complete App State (All Periods)</div>
+            <div class="export-group">
+                <button class="action-btn btn-save-html" onclick="saveStateToHTMLFile()">💾 Save Self-Contained .HTML</button>
+                <button class="action-btn btn-copy" onclick="exportStateJSON()">Export Backup (.json)</button>
+                <button class="action-btn btn-copy" onclick="document.getElementById('importFileInput').click()">Load Backup (.json)</button>
+                <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importStateJSON(event)">
+            </div>
+
+            <div class="action-section-title" style="margin-top:8px;">Export Current Period (<span class="current-period-label"></span>)</div>
+            <div class="export-group">
+                <button class="action-btn btn-csv" onclick="exportCSV()">Download CSV</button>
+                <button class="action-btn btn-md" onclick="exportMD()">Download .MD</button>
+                <button class="action-btn btn-copy" onclick="copySummary()">Copy Summary</button>
+                <button class="action-btn btn-attendance-reset" onclick="resetAttendance()">Reset Attendance</button>
+            </div>
+            <button class="action-btn reset-btn" onclick="resetWeek()">Reset Current Period Data</button>
+        </div>
+    </div>
+
+    <!-- STUDENT ACTION MODAL -->
+    <div id="actionModal" class="modal-overlay" onclick="handleOverlayClick(event, 'actionModal')">
+        <div class="modal-content">
+            <h3 id="modalStudentName" class="modal-title">Student Name</h3>
+            
+            <div class="section-label">Daily Attendance</div>
+            <div class="attendance-group">
+                <button id="attPresent" class="att-btn present" onclick="setAttendance('Present')">Present</button>
+                <button id="attTardy" class="att-btn tardy" onclick="setAttendance('Tardy')">Tardy</button>
+                <button id="attAbsent" class="att-btn absent" onclick="setAttendance('Absent')">Absent</button>
+            </div>
+
+            <div class="section-label">Deduct Participation Point (-1)</div>
+            <button class="reason-btn btn-offtask" onclick="logEvent('deduction', 'Off-Task / Disruptive')">Off-Task / Disruptive</button>
+            <button class="reason-btn btn-unprepared" onclick="logEvent('deduction', 'Unprepared / Posture')">Unprepared / Posture</button>
+            <button class="reason-btn btn-engagement" onclick="logEvent('deduction', 'Low Engagement')">Low Engagement</button>
+
+            <div class="section-label">Award Kudos (+1)</div>
+            <div class="kudos-grid">
+                <button class="kudos-btn" onclick="logEvent('kudos', 'Leadership')">★ Leadership</button>
+                <button class="kudos-btn" onclick="logEvent('kudos', 'Vocal Posture')">★ Posture</button>
+                <button class="kudos-btn" onclick="logEvent('kudos', 'Sight-Reading')">★ Reading</button>
+            </div>
+
+            <div class="modal-footer">
+                <button id="undoBtn" class="reason-btn btn-undo" onclick="undoLast()">Undo Last</button>
+                <button class="reason-btn btn-cancel" onclick="closeModal('actionModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PERIOD / ROSTER MANAGEMENT MODAL -->
+    <div id="periodModal" class="modal-overlay" onclick="handleOverlayClick(event, 'periodModal')">
+        <div class="modal-content">
+            <h3 id="periodModalTitle" class="modal-title">Manage Period</h3>
+            
+            <div class="section-label">Period Name</div>
+            <input type="text" id="periodNameInput" class="input-field" placeholder="e.g., Period 8 (7th Choir)">
+
+            <div class="section-label">Student Roster (One name per line)</div>
+            <textarea id="periodRosterInput" class="textarea-field" placeholder="Enter student names, one per line..."></textarea>
+
+            <div class="modal-footer">
+                <button id="deletePeriodBtn" class="reason-btn" style="background:var(--danger-color); color:#fff; flex:0.8;" onclick="deleteCurrentPeriod()">Delete</button>
+                <button class="reason-btn btn-cancel" onclick="closeModal('periodModal')">Cancel</button>
+                <button class="reason-btn" style="background:var(--success-color); color:#000; flex:1;" onclick="savePeriodSettings()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Saved!</div>
+
+    <!-- EMBEDDED STATE ANCHOR: Holds full state when you click "Save App File (.html)" -->
+    <script id="embedded-app-state" type="application/json">null</script>
+
+    <script>
+        const PERIOD_8_ROSTER = [
+            "Mika", "J. C.", "Averie", "Delaney", "Charlee", "Lee", 
+            "Sanchez", "Ana", "Savanna", "Jaceon", "Azi", "Louie", 
+            "Jace", "Kayleigh", "Abra", "Jocelyn", "Hayley", "Hasan", 
+            "De'mia", "Mackenzie", "Forever", "Lily"
+        ];
+
+        // 3 Sections, 2 Rows: Left (4+4=8), Middle (4+5=9), Right (4+4=8) = 25 seats
+        const TOTAL_STAGE_SEATS = 25;
+        const STORAGE_KEY = 'ibChoirAppState_v6_3section';
+        let currentLayout = 'riser';
+        let swapMode = false;
+        let swapFirstIndex = null;
+        let activeStudentIndex = null;
+        let isCreatingNewPeriod = false;
+
+        function buildStudentsArray(namesArray) {
+            const arr = namesArray.map((name, idx) => ({
+                id: idx + '_' + Date.now(),
+                name: name.trim(),
+                attendance: 'Present',
+                history: [],
+                kudos: []
+            }));
+            // Pad up to 25 seats with null (Empty Seat placeholders) if there are students
+            if (arr.length > 0 && arr.length < TOTAL_STAGE_SEATS) {
+                while (arr.length < TOTAL_STAGE_SEATS) {
+                    arr.push(null);
+                }
+            }
+            return arr;
+        }
+
+        function ensureStageCapacity(studentsList) {
+            const nonNullCount = studentsList.filter(Boolean).length;
+            if (nonNullCount > 0 && studentsList.length < TOTAL_STAGE_SEATS) {
+                while (studentsList.length < TOTAL_STAGE_SEATS) {
+                    studentsList.push(null);
+                }
+            }
+            return studentsList;
+        }
+
+        function createDefaultAppState() {
+            return {
+                activePeriodId: 'p8',
+                periods: [
+                    { id: 'p1', name: 'Period 1', students: [] },
+                    { id: 'p2', name: 'Period 2', students: [] },
+                    { id: 'p8', name: 'Period 8', students: buildStudentsArray(PERIOD_8_ROSTER) }
+                ]
+            };
+        }
+
+        function loadAppState() {
+            let embeddedState = null;
+            try {
+                const el = document.getElementById('embedded-app-state');
+                if (el && el.textContent.trim() !== 'null' && el.textContent.trim() !== '') {
+                    embeddedState = JSON.parse(el.textContent);
+                }
+            } catch (e) {}
+
+            let localState = null;
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) localState = JSON.parse(raw);
+            } catch (e) {}
+
+            let chosen = null;
+            if (embeddedState && localState) {
+                chosen = ((embeddedState.lastSaved || 0) >= (localState.lastSaved || 0)) ? embeddedState : localState;
+            } else if (embeddedState && embeddedState.periods) {
+                chosen = embeddedState;
+            } else if (localState && localState.periods) {
+                chosen = localState;
+            } else {
+                chosen = createDefaultAppState();
+            }
+
+            // Ensure every populated period has at least 25 slots for the 3-section layout
+            chosen.periods.forEach(p => {
+                p.students = ensureStageCapacity(p.students || []);
+            });
+            return chosen;
+        }
+
+        let appState = loadAppState();
+
+        function getActivePeriod() {
+            let p = appState.periods.find(p => p.id === appState.activePeriodId);
+            if (!p) {
+                p = appState.periods[0];
+                appState.activePeriodId = p.id;
+            }
+            return p;
+        }
+
+        function getRealStudents(period) {
+            return (period || getActivePeriod()).students.filter(Boolean);
+        }
+
+        function saveData() {
+            appState.lastSaved = Date.now();
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            const stateEl = document.getElementById('embedded-app-state');
+            if (stateEl) {
+                stateEl.textContent = JSON.stringify(appState, null, 2);
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2400);
+        }
+
+        /* Period Bar & Switching */
+        function renderPeriodBar() {
+            const bar = document.getElementById('periodTabs');
+            bar.innerHTML = '';
+            appState.periods.forEach(p => {
+                const count = getRealStudents(p).length;
+                const btn = document.createElement('button');
+                btn.className = 'period-tab' + (p.id === appState.activePeriodId ? ' active' : '');
+                btn.innerText = `${p.name} (${count})`;
+                btn.onclick = () => switchPeriod(p.id);
+                bar.appendChild(btn);
+            });
+
+            const activePeriod = getActivePeriod();
+            document.querySelectorAll('.current-period-label').forEach(el => {
+                el.innerText = activePeriod.name;
+            });
+        }
+
+        function switchPeriod(periodId) {
+            appState.activePeriodId = periodId;
+            swapMode = false;
+            swapFirstIndex = null;
+            saveData();
+            renderPeriodBar();
+            renderPodium();
+            renderAnalytics();
+            renderMaster();
+        }
+
+        function openPeriodModal(isNew) {
+            isCreatingNewPeriod = isNew;
+            const modalTitle = document.getElementById('periodModalTitle');
+            const nameInput = document.getElementById('periodNameInput');
+            const rosterInput = document.getElementById('periodRosterInput');
+            const delBtn = document.getElementById('deletePeriodBtn');
+
+            if (isNew) {
+                modalTitle.innerText = 'Add New Period';
+                nameInput.value = `Period ${appState.periods.length + 1}`;
+                rosterInput.value = '';
+                delBtn.style.display = 'none';
+            } else {
+                const active = getActivePeriod();
+                modalTitle.innerText = `Edit ${active.name}`;
+                nameInput.value = active.name;
+                rosterInput.value = getRealStudents(active).map(s => s.name).join('\n');
+                delBtn.style.display = appState.periods.length > 1 ? 'block' : 'none';
+            }
+            document.getElementById('periodModal').classList.add('active');
+        }
+
+        function savePeriodSettings() {
+            const nameVal = document.getElementById('periodNameInput').value.trim() || 'Untitled Period';
+            const rawLines = document.getElementById('periodRosterInput').value
+                .split('\n')
+                .map(n => n.trim())
+                .filter(n => n.length > 0);
+
+            if (isCreatingNewPeriod) {
+                const newId = 'p_' + Date.now();
+                appState.periods.push({
+                    id: newId,
+                    name: nameVal,
+                    students: buildStudentsArray(rawLines)
+                });
+                appState.activePeriodId = newId;
+            } else {
+                const active = getActivePeriod();
+                active.name = nameVal;
+                const existingReal = getRealStudents(active);
+                const updatedStudents = rawLines.map((name, idx) => {
+                    const existing = existingReal.find(s => s.name.toLowerCase() === name.toLowerCase());
+                    if (existing) {
+                        existing.name = name;
+                        return existing;
+                    }
+                    return {
+                        id: idx + '_' + Date.now(),
+                        name: name,
+                        attendance: 'Present',
+                        history: [],
+                        kudos: []
+                    };
+                });
+                active.students = ensureStageCapacity(updatedStudents);
+            }
+
+            saveData();
+            closeModal('periodModal');
+            renderPeriodBar();
+            renderPodium();
+            renderAnalytics();
+            renderMaster();
+            showToast('Period saved!');
+        }
+
+        function deleteCurrentPeriod() {
+            if (appState.periods.length <= 1) return;
+            const active = getActivePeriod();
+            if (confirm(`Delete "${active.name}" and all of its student data?`)) {
+                appState.periods = appState.periods.filter(p => p.id !== active.id);
+                appState.activePeriodId = appState.periods[0].id;
+                saveData();
+                closeModal('periodModal');
+                renderPeriodBar();
+                renderPodium();
+                renderAnalytics();
+                renderMaster();
+            }
+        }
+
+        /* Layout & Podium Rendering */
+        function setLayout(layout) {
+            currentLayout = layout;
+            if (layout === 'alpha') {
+                swapMode = false;
+                swapFirstIndex = null;
+            }
+            document.getElementById('btnRiserLayout').classList.toggle('active', layout === 'riser');
+            document.getElementById('btnAlphaLayout').classList.toggle('active', layout === 'alpha');
+            document.getElementById('swapModeBtn').style.display = layout === 'riser' ? 'block' : 'none';
+            document.getElementById('swapModeBtn').classList.toggle('active', swapMode);
+            document.getElementById('swapModeBtn').innerText = swapMode ? 'Done Swapping' : 'Edit Seating (Swap)';
+            renderPodium();
+        }
+
+        function toggleSwapMode() {
+            swapMode = !swapMode;
+            swapFirstIndex = null;
+            const btn = document.getElementById('swapModeBtn');
+            btn.classList.toggle('active', swapMode);
+            btn.innerText = swapMode ? 'Done Swapping' : 'Edit Seating (Swap)';
+            renderPodium();
+        }
+
+        function createSeatElement(student, seatIndex) {
+            const btn = document.createElement('button');
+
+            if (!student) {
+                let classes = ['student-btn', 'empty-seat'];
+                if (swapMode && swapFirstIndex === seatIndex) classes.push('swap-selected');
+                btn.className = classes.join(' ');
+                btn.innerHTML = `<span>Empty Seat</span>`;
+                btn.onclick = () => {
+                    if (swapMode) {
+                        handleCardTap(seatIndex);
+                    } else {
+                        showToast('Tap "Edit Seating (Swap)" to move a student here');
+                    }
+                };
+                return btn;
+            }
+
+            const deductions = student.history.length;
+            const kudosCount = student.kudos.length;
+            
+            let classes = ['student-btn'];
+            if (student.attendance === 'Absent') classes.push('absent');
+            if (student.attendance === 'Tardy') classes.push('tardy');
+            if (swapMode && swapFirstIndex === seatIndex) classes.push('swap-selected');
+            btn.className = classes.join(' ');
+
+            btn.onclick = () => handleCardTap(seatIndex);
+
+            let statusPill = '';
+            if (student.attendance === 'Tardy') statusPill = `<span class="status-pill tardy">Tardy</span>`;
+            if (student.attendance === 'Absent') statusPill = `<span class="status-pill absent">Absent</span>`;
+
+            const dedBadgeClass = deductions === 0 ? 'badge zero' : 'badge deduction';
+            const dedBadgeText = deductions === 0 ? '0' : `-${deductions}`;
+            const kudosBadge = kudosCount > 0 ? `<div class="badge kudos">+${kudosCount}</div>` : '';
+
+            btn.innerHTML = `
+                ${statusPill}
+                <span class="student-name">${student.name}</span>
+                <div class="badge-row">
+                    <div class="${dedBadgeClass}">${dedBadgeText}</div>
+                    ${kudosBadge}
+                </div>
+            `;
+            return btn;
+        }
+
+        function renderPodium() {
+            const container = document.getElementById('podiumContent');
+            container.innerHTML = '';
+            const activePeriod = getActivePeriod();
+            const realStudents = getRealStudents(activePeriod);
+
+            if (realStudents.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:45px 20px; background:var(--surface-color); border-radius:14px;">
+                        <h3 style="margin:0 0 10px 0;">No Students in ${activePeriod.name} Yet</h3>
+                        <p style="color:var(--text-muted); margin:0 0 18px 0;">Tap below to paste or type your roster for this class period.</p>
+                        <button class="action-btn btn-save-html" onclick="openPeriodModal(false)">+ Add Students to ${activePeriod.name}</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const studentsData = ensureStageCapacity(activePeriod.students);
+            document.getElementById('swapModeBtn').style.display = currentLayout === 'riser' ? 'block' : 'none';
+
+            if (currentLayout === 'alpha') {
+                const grid = document.createElement('div');
+                grid.className = 'alpha-grid';
+                const indexed = studentsData
+                    .map((s, idx) => ({ s, idx }))
+                    .filter(item => item.s !== null)
+                    .sort((a, b) => a.s.name.localeCompare(b.s.name));
+                indexed.forEach(item => {
+                    grid.appendChild(createSeatElement(item.s, item.idx));
+                });
+                container.appendChild(grid);
+            } else {
+                const stageWrapper = document.createElement('div');
+                stageWrapper.className = 'stage-wrapper';
+
+                const threeSecGrid = document.createElement('div');
+                threeSecGrid.className = 'three-sections-container';
+
+                // Exact 3-Section, 2-Row Definition (25 seats total)
+                const sectionsConfig = [
+                    {
+                        title: 'Left Side',
+                        rows: [
+                            { label: 'Back Row (4)', cols: 4, indices: [0, 1, 2, 3] },
+                            { label: 'Front Row (4)', cols: 4, indices: [4, 5, 6, 7] }
+                        ]
+                    },
+                    {
+                        title: 'Middle Section',
+                        rows: [
+                            { label: 'Back Row (4)', cols: 4, indices: [8, 9, 10, 11] },
+                            { label: 'Front Row (5)', cols: 5, indices: [12, 13, 14, 15, 16] }
+                        ]
+                    },
+                    {
+                        title: 'Right Side',
+                        rows: [
+                            { label: 'Back Row (4)', cols: 4, indices: [17, 18, 19, 20] },
+                            { label: 'Front Row (4)', cols: 4, indices: [21, 22, 23, 24] }
+                        ]
+                    }
+                ];
+
+                sectionsConfig.forEach(sec => {
+                    const secBlock = document.createElement('div');
+                    secBlock.className = 'section-block';
+                    secBlock.innerHTML = `<div class="section-header">${sec.title}</div>`;
+
+                    sec.rows.forEach(row => {
+                        const rowGroup = document.createElement('div');
+                        rowGroup.className = 'row-group';
+                        rowGroup.innerHTML = `<div class="row-label">${row.label}</div>`;
+
+                        const seatsGrid = document.createElement('div');
+                        seatsGrid.className = `row-seats-grid cols-${row.cols}`;
+
+                        row.indices.forEach(seatIdx => {
+                            seatsGrid.appendChild(createSeatElement(studentsData[seatIdx], seatIdx));
+                        });
+
+                        rowGroup.appendChild(seatsGrid);
+                        secBlock.appendChild(rowGroup);
+                    });
+
+                    threeSecGrid.appendChild(secBlock);
+                });
+
+                stageWrapper.appendChild(threeSecGrid);
+
+                // If a period ever has more than 25 students, show an overflow row so no one is lost
+                if (studentsData.length > TOTAL_STAGE_SEATS) {
+                    const overflowBox = document.createElement('div');
+                    overflowBox.className = 'section-block';
+                    overflowBox.innerHTML = `<div class="section-header">Overflow Seating</div>`;
+                    const overflowGrid = document.createElement('div');
+                    overflowGrid.className = 'alpha-grid';
+                    for (let i = TOTAL_STAGE_SEATS; i < studentsData.length; i++) {
+                        overflowGrid.appendChild(createSeatElement(studentsData[i], i));
+                    }
+                    overflowBox.appendChild(overflowGrid);
+                    stageWrapper.appendChild(overflowBox);
+                }
+
+                const podiumMarker = document.createElement('div');
+                podiumMarker.className = 'conductor-podium-marker';
+                podiumMarker.innerText = '▲ Conductor Podium / Piano ▲';
+                stageWrapper.appendChild(podiumMarker);
+
+                container.appendChild(stageWrapper);
+            }
+        }
+
+        function handleCardTap(index) {
+            const studentsData = getActivePeriod().students;
+            if (swapMode) {
+                if (swapFirstIndex === null) {
+                    swapFirstIndex = index;
+                    renderPodium();
+                } else {
+                    const temp = studentsData[swapFirstIndex];
+                    studentsData[swapFirstIndex] = studentsData[index];
+                    studentsData[index] = temp;
+                    swapFirstIndex = null;
+                    saveData();
+                    renderPodium();
+                }
+            } else {
+                if (studentsData[index]) {
+                    openStudentModal(index);
+                }
+            }
+        }
+
+        function openStudentModal(index) {
+            activeStudentIndex = index;
+            const student = getActivePeriod().students[index];
+            if (!student) return;
+            document.getElementById('modalStudentName').innerText = student.name;
+            
+            document.getElementById('attPresent').classList.toggle('active', student.attendance === 'Present');
+            document.getElementById('attTardy').classList.toggle('active', student.attendance === 'Tardy');
+            document.getElementById('attAbsent').classList.toggle('active', student.attendance === 'Absent');
+
+            const hasActions = student.history.length > 0 || student.kudos.length > 0;
+            document.getElementById('undoBtn').disabled = !hasActions;
+            document.getElementById('actionModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            if (modalId === 'actionModal') activeStudentIndex = null;
+        }
+
+        function handleOverlayClick(e, modalId) {
+            if (e.target.id === modalId) closeModal(modalId);
+        }
+
+        function setAttendance(status) {
+            if (activeStudentIndex === null) return;
+            const s = getActivePeriod().students[activeStudentIndex];
+            if (!s) return;
+            s.attendance = status;
+            saveData();
+            openStudentModal(activeStudentIndex);
+            renderPodium();
+        }
+
+        function getDayShort() {
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            return days[new Date().getDay()];
+        }
+
+        function logEvent(type, label) {
+            if (activeStudentIndex === null) return;
+            const student = getActivePeriod().students[activeStudentIndex];
+            if (!student) return;
+            const entry = { reason: label, day: getDayShort(), time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) };
+            if (type === 'deduction') {
+                student.history.push(entry);
+            } else {
+                student.kudos.push(entry);
+            }
+            saveData();
+            renderPodium();
+            closeModal('actionModal');
+        }
+
+        function undoLast() {
+            if (activeStudentIndex === null) return;
+            const student = getActivePeriod().students[activeStudentIndex];
+            if (!student) return;
+            if (student.history.length > 0) {
+                student.history.pop();
+            } else if (student.kudos.length > 0) {
+                student.kudos.pop();
+            }
+            saveData();
+            renderPodium();
+            closeModal('actionModal');
+        }
+
+        function summarizeArray(arr) {
+            const counts = {};
+            arr.forEach(item => {
+                const key = typeof item === 'string' ? item : item.reason;
+                counts[key] = (counts[key] || 0) + 1;
+            });
+            return Object.entries(counts).map(([k, v]) => `${v}x ${k}`).join(', ');
+        }
+
+        function renderAnalytics() {
+            const studentsData = getRealStudents();
+            let totalDed = 0;
+            let totalKudos = 0;
+            let ibSum = 0;
+            let absentCount = 0;
+            let tardyCount = 0;
+
+            const catCounts = { 'Off-Task / Disruptive': 0, 'Unprepared / Posture': 0, 'Low Engagement': 0 };
+            const dayCounts = { 'Mon': 0, 'Tue': 0, 'Wed': 0, 'Thu': 0, 'Fri': 0 };
+
+            studentsData.forEach(s => {
+                const d = s.history.length;
+                totalDed += d;
+                totalKudos += s.kudos.length;
+                ibSum += Math.max(1, 8 - d);
+                if (s.attendance === 'Absent') absentCount++;
+                if (s.attendance === 'Tardy') tardyCount++;
+
+                s.history.forEach(h => {
+                    const r = typeof h === 'string' ? h : h.reason;
+                    const day = h.day || 'Mon';
+                    if (catCounts[r] !== undefined) catCounts[r]++;
+                    if (dayCounts[day] !== undefined) dayCounts[day]++;
+                });
+            });
+
+            const avgIB = studentsData.length > 0 ? (ibSum / studentsData.length).toFixed(1) : '8.0';
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card"><div class="stat-label">Class IB Average</div><div class="stat-val">${avgIB} / 8</div></div>
+                <div class="stat-card"><div class="stat-label">Total Deductions</div><div class="stat-val" style="color:var(--danger-color)">${totalDed}</div></div>
+                <div class="stat-card"><div class="stat-label">Total Kudos</div><div class="stat-val" style="color:var(--kudos-color)">+${totalKudos}</div></div>
+                <div class="stat-card"><div class="stat-label">Absent / Tardy</div><div class="stat-val" style="color:var(--warning-color)">${absentCount} / ${tardyCount}</div></div>
+            `;
+
+            const maxCat = Math.max(1, ...Object.values(catCounts));
+            document.getElementById('categoryCharts').innerHTML = Object.entries(catCounts).map(([cat, count]) => `
+                <div class="bar-row">
+                    <div class="bar-label"><span>${cat}</span><span>${count}</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${(count / maxCat) * 100}%"></div></div>
+                </div>
+            `).join('');
+
+            const maxDay = Math.max(1, ...Object.values(dayCounts));
+            document.getElementById('dayCharts').innerHTML = Object.entries(dayCounts).map(([day, count]) => `
+                <div class="bar-row">
+                    <div class="bar-label"><span>${day}</span><span>${count}</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:${(count / maxDay) * 100}%"></div></div>
+                </div>
+            `).join('');
+        }
+
+        function renderMaster() {
+            const list = document.getElementById('masterList');
+            list.innerHTML = '';
+            const studentsData = getRealStudents();
+
+            const sorted = [...studentsData].sort((a, b) => a.name.localeCompare(b.name));
+            sorted.forEach(student => {
+                const deductions = student.history.length;
+                const ibGrade = Math.max(1, 8 - deductions);
+                const reasonStr = summarizeArray(student.history);
+                const kudosStr = summarizeArray(student.kudos);
+
+                const item = document.createElement('div');
+                item.className = 'list-item';
+                item.innerHTML = `
+                    <div class="list-item-header">
+                        <span>${student.name} <small style="color:var(--text-muted)">(${student.attendance})</small></span>
+                        <span class="ib-score">IB: ${ibGrade}</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (${deductions}): ${reasonStr || 'None'}<br>
+                        ${kudosStr ? `<span style="color:var(--kudos-color)">Kudos: ${kudosStr}</span>` : ''}
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+            if (tabId === 'podium') {
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+                document.getElementById('podiumView').classList.add('active');
+                renderPodium();
+            } else if (tabId === 'analytics') {
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                document.getElementById('analyticsView').classList.add('active');
+                renderAnalytics();
+            } else {
+                document.querySelector('.tab-btn:nth-child(3)').classList.add('active');
+                document.getElementById('masterView').classList.add('active');
+                renderMaster();
+            }
+        }
+
+        function resetAttendance() {
+            getRealStudents().forEach(s => s.attendance = 'Present');
+            saveData();
+            renderMaster();
+            renderPodium();
+            showToast(`${getActivePeriod().name} attendance reset`);
+        }
+
+        function resetWeek() {
+            const active = getActivePeriod();
+            if (confirm(`Clear all weekly deductions, kudos, and attendance for ${active.name}? Make sure you have exported or saved your file first!`)) {
+                getRealStudents(active).forEach(s => {
+                    s.attendance = 'Present';
+                    s.history = [];
+                    s.kudos = [];
+                });
+                saveData();
+                renderPodium();
+                renderMaster();
+                switchTab('podium');
+            }
+        }
+
+        function getDateString() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function downloadFile(filename, content, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        /* Self-Contained HTML File Saver */
+        function saveStateToHTMLFile() {
+            saveData();
+            const fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            downloadFile(`ChoirTracker_Saved_${getDateString()}.html`, fullHTML, 'text/html;charset=utf-8;');
+            showToast('Self-contained .html file saved!');
+        }
+
+        /* JSON State Backup & Restore */
+        function exportStateJSON() {
+            saveData();
+            const jsonStr = JSON.stringify(appState, null, 2);
+            downloadFile(`ChoirTracker_Backup_${getDateString()}.json`, jsonStr, 'application/json;charset=utf-8;');
+            showToast('Backup .json downloaded!');
+        }
+
+        function importStateJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && Array.isArray(imported.periods)) {
+                        imported.periods.forEach(p => {
+                            p.students = ensureStageCapacity(p.students || []);
+                        });
+                        appState = imported;
+                        saveData();
+                        renderPeriodBar();
+                        renderPodium();
+                        renderAnalytics();
+                        renderMaster();
+                        showToast('All periods & data restored!');
+                    } else {
+                        alert('Invalid backup file format.');
+                    }
+                } catch (err) {
+                    alert('Could not read the backup file.');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        /* Period CSV & Markdown Exports */
+        function buildCSV() {
+            const active = getActivePeriod();
+            let csv = "Period,Name,Attendance,Deductions,IB Grade,Deduction Reasons,Kudos\n";
+            const sorted = [...getRealStudents(active)].sort((a, b) => a.name.localeCompare(b.name));
+            sorted.forEach(s => {
+                const ded = s.history.length;
+                const ib = Math.max(1, 8 - ded);
+                const reasons = `"${summarizeArray(s.history)}"`;
+                const kudos = `"${summarizeArray(s.kudos)}"`;
+                csv += `"${active.name}","${s.name}",${s.attendance},${ded},${ib},${reasons},${kudos}\n`;
+            });
+            return csv;
+        }
+
+        function buildMD() {
+            const active = getActivePeriod();
+            let md = `# IB Choir Participation Report — ${active.name} (${getDateString()})\n\n`;
+            md += `| Name | Attendance | Deductions | IB Grade | Reasons | Kudos |\n`;
+            md += `|---|---|---|---|---|---|\n`;
+            const sorted = [...getRealStudents(active)].sort((a, b) => a.name.localeCompare(b.name));
+            sorted.forEach(s => {
+                const ded = s.history.length;
+                const ib = Math.max(1, 8 - ded);
+                const reasons = summarizeArray(s.history) || "None";
+                const kudos = summarizeArray(s.kudos) || "None";
+                md += `| ${s.name} | ${s.attendance} | ${ded} | **${ib}** | ${reasons} | ${kudos} |\n`;
+            });
+            return md;
+        }
+
+        function exportCSV() {
+            const safeName = getActivePeriod().name.replace(/[^a-z0-9]/gi, '_');
+            downloadFile(`Choir_${safeName}_${getDateString()}.csv`, buildCSV(), 'text/csv;charset=utf-8;');
+        }
+
+        function exportMD() {
+            const safeName = getActivePeriod().name.replace(/[^a-z0-9]/gi, '_');
+            downloadFile(`Choir_${safeName}_${getDateString()}.md`, buildMD(), 'text/markdown;charset=utf-8;');
+        }
+
+        function copySummary() {
+            const md = buildMD();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(md).then(() => showToast('Markdown report copied!'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = md;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Markdown report copied!');
+            }
+        }
+
+        // Initialize App
+        renderPeriodBar();
+        renderPodium();
+    </script>
+</body>
+</html>
