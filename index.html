@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -42,7 +43,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 12px;
             padding-bottom: 12px;
             border-bottom: 1px solid #2c2c2c;
@@ -50,7 +51,8 @@
         .title-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .app-title {
             margin: 0;
@@ -58,17 +60,35 @@
             font-weight: 800;
             letter-spacing: -0.5px;
         }
-        .quick-save-btn {
-            background-color: rgba(3, 218, 198, 0.15);
-            color: var(--success-color);
-            border: 1px solid var(--success-color);
+        .status-chip {
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            border: 1px solid #383838;
+            padding: 6px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-chip.synced {
+            border-color: var(--kudos-color);
+            color: var(--kudos-color);
+            background-color: rgba(72, 187, 120, 0.1);
+        }
+        .end-day-btn {
+            background-color: rgba(99, 179, 237, 0.15);
+            color: var(--info-color);
+            border: 1px solid var(--info-color);
             padding: 7px 12px;
             border-radius: 8px;
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
         }
-        .quick-save-btn:active {
+        .end-day-btn:active {
             transform: scale(0.96);
         }
         .nav-tabs {
@@ -148,7 +168,7 @@
             white-space: nowrap;
         }
         
-        /* Sub-controls for Podium */
+        /* Sub-controls */
         .sub-bar {
             display: flex;
             justify-content: space-between;
@@ -162,6 +182,8 @@
             background: var(--surface-color);
             border-radius: 8px;
             padding: 3px;
+            flex-wrap: wrap;
+            gap: 2px;
         }
         .sub-btn {
             background: transparent;
@@ -169,7 +191,7 @@
             border: none;
             padding: 8px 14px;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -200,10 +222,10 @@
             display: block;
         }
 
-        /* A-Z Grid */
+        /* A-Z & Master Grid */
         .alpha-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
             gap: 12px;
         }
 
@@ -215,13 +237,11 @@
         }
         .three-sections-container {
             display: grid;
-            /* Proportional widths (4 : 5 : 4) with a clear 22px visual aisle gap between sections */
             grid-template-columns: 4fr 5fr 4fr;
             gap: 22px;
             align-items: stretch;
         }
         @media (max-width: 1024px) {
-            /* If iPad is in Portrait, stack or allow horizontal scroll cleanly */
             .three-sections-container {
                 grid-template-columns: 1fr;
                 gap: 18px;
@@ -283,12 +303,12 @@
             width: 100%;
         }
 
-        /* Student Card Button */
+        /* Student Card Button (Podium & Master Grid) */
         .student-btn {
             background-color: var(--surface-color);
             border: 2px solid transparent;
             border-radius: 10px;
-            padding: 10px 4px;
+            padding: 12px 6px 8px 6px;
             color: var(--text-color);
             font-size: 13.5px;
             font-weight: 700;
@@ -296,7 +316,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            min-height: 82px;
+            min-height: 88px;
             cursor: pointer;
             position: relative;
             transition: transform 0.08s ease, background-color 0.15s;
@@ -316,7 +336,7 @@
         .student-btn.empty-seat {
             background-color: rgba(255, 255, 255, 0.015);
             border: 1px dashed #333;
-            color: #555;
+            color: #4f4f4f;
             justify-content: center;
             font-size: 11px;
             font-weight: 600;
@@ -331,11 +351,43 @@
             50% { transform: scale(0.96); }
             100% { transform: scale(1); }
         }
+        .seat-code-tag {
+            font-size: 9px;
+            color: #777;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 1px 4px;
+            border-radius: 3px;
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+        .week-mini-tag {
+            font-size: 9px;
+            color: var(--accent-color);
+            position: absolute;
+            bottom: 3px;
+            right: 5px;
+            font-weight: 700;
+            opacity: 0.8;
+        }
         .student-name {
             text-align: center;
             word-break: break-word;
             line-height: 1.15;
-            margin-top: 4px;
+            margin-top: 6px;
+        }
+        .period-mini-tag {
+            font-size: 9px;
+            color: var(--text-muted);
+            background: #141414;
+            padding: 1px 5px;
+            border-radius: 4px;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            font-weight: 700;
         }
         .status-pill {
             font-size: 9px;
@@ -359,7 +411,8 @@
             display: flex;
             gap: 4px;
             align-items: center;
-            margin-top: 6px;
+            margin-top: 4px;
+            margin-bottom: 6px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -384,13 +437,36 @@
             background-color: var(--kudos-color);
             color: #000;
         }
+        .badge.ib-pill {
+            background-color: rgba(187, 134, 252, 0.18);
+            color: var(--accent-color);
+            border: 1px solid rgba(187, 134, 252, 0.4);
+            font-size: 13px;
+            padding: 3px 9px;
+        }
 
-        /* Analytics View */
+        /* Master Grid Section Headers */
+        .master-period-section {
+            margin-bottom: 24px;
+        }
+        .master-period-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #2c2c2c;
+        }
+
+        /* Analytics View & Class Comparison Table */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         .stat-card {
             background: var(--surface-color);
@@ -399,13 +475,13 @@
             text-align: center;
         }
         .stat-val {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             color: var(--accent-color);
             margin-top: 4px;
         }
         .stat-label {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             font-weight: 600;
         }
@@ -414,6 +490,7 @@
             padding: 18px;
             border-radius: 12px;
             margin-bottom: 16px;
+            overflow-x: auto;
         }
         .chart-box h3 {
             margin: 0 0 14px 0;
@@ -445,40 +522,35 @@
             background: var(--info-color);
         }
 
-        /* Master List View */
-        .master-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
         }
-        .list-item {
-            background-color: var(--surface-color);
-            padding: 14px 16px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        .comparison-table th {
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 10px 8px;
+            border-bottom: 1px solid #333;
         }
-        .list-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 17px;
-            font-weight: 700;
+        .comparison-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #262626;
+            font-weight: 600;
         }
-        .ib-score {
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table tr.total-row td {
+            border-top: 2px solid #444;
             font-weight: 800;
             color: var(--accent-color);
-            font-size: 20px;
-            background: rgba(187, 134, 252, 0.12);
-            padding: 4px 12px;
-            border-radius: 8px;
         }
-        .log-details {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
+
+        /* Action Container */
         .action-container {
             display: flex;
             flex-direction: column;
@@ -510,7 +582,7 @@
             cursor: pointer;
             flex: 1;
             min-width: 145px;
-            max-width: 230px;
+            max-width: 240px;
             text-align: center;
         }
         .btn-csv { background-color: var(--info-color); color: #000; }
@@ -531,7 +603,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.75);
+            background: rgba(0,0,0,0.78);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -545,7 +617,7 @@
             padding: 20px;
             border-radius: 16px;
             width: 100%;
-            max-width: 380px;
+            max-width: 410px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -639,7 +711,64 @@
             cursor: not-allowed;
         }
 
-        /* Form Inputs for Roster Editor */
+        /* Student Profile Detail Modal (IB Master Grid Click) */
+        .profile-summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 6px 0;
+        }
+        .profile-stat-box {
+            background: #141414;
+            padding: 10px 6px;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+        }
+        .profile-stat-num {
+            font-size: 20px;
+            font-weight: 800;
+        }
+        .profile-stat-lbl {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+            font-weight: 700;
+        }
+        .history-log-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 220px;
+            overflow-y: auto;
+            text-align: left;
+            background: #141414;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #282828;
+        }
+        .history-log-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface-color);
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            gap: 8px;
+        }
+        .log-remove-btn {
+            background: rgba(207, 102, 121, 0.2);
+            color: var(--danger-color);
+            border: none;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* Form Inputs */
         .input-field, .textarea-field {
             width: 100%;
             background: #141414;
@@ -653,7 +782,7 @@
             -webkit-user-select: text;
         }
         .textarea-field {
-            min-height: 150px;
+            min-height: 170px;
             resize: vertical;
             line-height: 1.4;
         }
@@ -680,18 +809,19 @@
     <div class="top-bar">
         <div class="title-group">
             <h1 class="app-title">IB Choir Tracker</h1>
-            <button class="quick-save-btn" onclick="saveStateToHTMLFile()">💾 Save App File (.html)</button>
+            <button id="cloudStatusBtn" class="status-chip synced" onclick="openCloudModal()">☁️ Cloud Sync: Active</button>
+            <button class="end-day-btn" onclick="startFreshDayAllClasses()">🌅 Start Fresh Day (Keep Weekly IB)</button>
         </div>
         <div class="nav-tabs">
-            <button class="tab-btn" onclick="switchTab('podium')">Podium</button>
+            <button class="tab-btn active" onclick="switchTab('podium')">Podium (Today)</button>
             <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
-            <button class="tab-btn active" onclick="switchTab('master')">IB Master</button>
+            <button class="tab-btn" onclick="switchTab('master')">IB Master (Week)</button>
         </div>
     </div>
 
     <!-- MULTI-PERIOD BAR -->
     <div class="period-bar">
-        <div class="period-tabs" id="periodTabs"><button class="period-tab">Period 1 (9)</button><button class="period-tab">Period 3 (14)</button><button class="period-tab">IB Seminar (23)</button><button class="period-tab">Period 5 (17)</button><button class="period-tab active">Period 8 (22)</button></div>
+        <div class="period-tabs" id="periodTabs"></div>
         <div style="display:flex; gap:6px;">
             <button class="period-add-btn" onclick="openPeriodModal(true)">+ Add Period</button>
             <button class="period-manage-btn" onclick="openPeriodModal(false)">Edit Roster</button>
@@ -699,469 +829,113 @@
     </div>
 
     <!-- PODIUM VIEW -->
-    <div id="podiumView" class="view-section">
+    <div id="podiumView" class="view-section active">
         <div class="sub-bar">
             <div class="view-toggle-group">
                 <button id="btnRiserLayout" class="sub-btn active" onclick="setLayout('riser')">3-Section Riser</button>
                 <button id="btnAlphaLayout" class="sub-btn" onclick="setLayout('alpha')">A–Z Grid</button>
             </div>
-            <button id="swapModeBtn" class="swap-btn" onclick="toggleSwapMode()" style="display: block;">Edit Seating (Swap)</button>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Podium shows TODAY's points (Weekly total in corner)</span>
+                <button id="swapModeBtn" class="swap-btn" onclick="toggleSwapMode()">Edit Seating (Swap)</button>
+            </div>
         </div>
-        <div id="podiumContent"><div class="stage-wrapper"><div class="three-sections-container"><div class="section-block"><div class="section-header">Left Side</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
-                
-                <span class="student-name">Lily</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Ana</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Jocelyn</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Mackenzie</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button></div></div><div class="row-group"><div class="row-label">Front Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn empty-seat"><span>Empty Seat</span></button><button class="student-btn">
-                
-                <span class="student-name">Forever</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Azi</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Delaney</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button></div></div></div><div class="section-block"><div class="section-header">Middle Section</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
-                
-                <span class="student-name">Louie</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Hasan</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">J. C.</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Lee</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button></div></div><div class="row-group"><div class="row-label">Front Row (5)</div><div class="row-seats-grid cols-5"><button class="student-btn empty-seat"><span>Empty Seat</span></button><button class="student-btn">
-                
-                <span class="student-name">Sanchez</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Jace</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Jaceon</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn empty-seat"><span>Empty Seat</span></button></div></div></div><div class="section-block"><div class="section-header">Right Side</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
-                
-                <span class="student-name">Mika</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Charlee</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Hayley</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Abra</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button></div></div><div class="row-group"><div class="row-label">Front Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
-                
-                <span class="student-name">De'mia</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Kayleigh</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Averie</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button><button class="student-btn">
-                
-                <span class="student-name">Savanna</span>
-                <div class="badge-row">
-                    <div class="badge zero">0</div>
-                    
-                </div>
-            </button></div></div></div></div><div class="conductor-podium-marker">▲ Conductor Podium / Piano ▲</div></div></div>
+        <div id="podiumContent"></div>
     </div>
 
     <!-- ANALYTICS VIEW -->
     <div id="analyticsView" class="view-section">
-        <div class="stats-grid" id="statsGrid">
-                <div class="stat-card"><div class="stat-label">Class IB Average</div><div class="stat-val">8.0 / 8</div></div>
-                <div class="stat-card"><div class="stat-label">Total Deductions</div><div class="stat-val" style="color:var(--danger-color)">0</div></div>
-                <div class="stat-card"><div class="stat-label">Total Kudos</div><div class="stat-val" style="color:var(--kudos-color)">+0</div></div>
-                <div class="stat-card"><div class="stat-label">Absent / Tardy</div><div class="stat-val" style="color:var(--warning-color)">0 / 0</div></div>
-            </div>
+        <div class="sub-bar">
+            <div class="view-toggle-group" id="analyticsScopeBar"></div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <!-- Master Class Comparison Table -->
+        <div class="chart-box" id="classComparisonBox">
+            <h3>Class-by-Class Weekly Master Breakdown</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Class Period</th>
+                        <th>Students</th>
+                        <th>Weekly IB Avg</th>
+                        <th>Week Deductions</th>
+                        <th>Today Deductions</th>
+                        <th>Week Kudos</th>
+                        <th>Absent / Tardy</th>
+                    </tr>
+                </thead>
+                <tbody id="classComparisonBody"></tbody>
+            </table>
+        </div>
+
         <div class="chart-box">
-            <h3>Deductions by Category (<span class="current-period-label">Period 8</span>)</h3>
-            <div id="categoryCharts">
-                <div class="bar-row">
-                    <div class="bar-label"><span>Off-Task / Disruptive</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Unprepared / Posture</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Low Engagement</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                </div>
-            </div>
+            <h3>Weekly Deductions by Category (<span id="analyticsScopeLabel">All Classes</span>)</h3>
+            <div id="categoryCharts"></div>
         </div>
         <div class="chart-box">
-            <h3>Deductions by Day of Week (<span class="current-period-label">Period 8</span>)</h3>
-            <div id="dayCharts">
-                <div class="bar-row">
-                    <div class="bar-label"><span>Mon</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Tue</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Wed</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Thu</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
-                </div>
-            
-                <div class="bar-row">
-                    <div class="bar-label"><span>Fri</span><span>0</span></div>
-                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
-                </div>
-            </div>
+            <h3>Weekly Deductions by Day of Week (<span id="analyticsDayScopeLabel">All Classes</span>)</h3>
+            <div id="dayCharts"></div>
         </div>
     </div>
 
-    <!-- MASTER VIEW -->
-    <div id="masterView" class="view-section active">
-        <div class="master-list" id="masterList"><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Abra <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Ana <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Averie <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Azi <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Charlee <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>De'mia <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Delaney <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Forever <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Hasan <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Hayley <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>J. C. <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Jace <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Jaceon <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Jocelyn <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Kayleigh <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Lee <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Lily <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Louie <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Mackenzie <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Mika <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Sanchez <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div><div class="list-item">
-                    <div class="list-item-header">
-                        <span>Savanna <small style="color:var(--text-muted)">(Present)</small></span>
-                        <span class="ib-score">IB: 8</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (0): None<br>
-                        
-                    </div>
-                </div></div>
+    <!-- IB MASTER VIEW (GRID + EXPANDABLE CARDS) -->
+    <div id="masterView" class="view-section">
+        <div class="sub-bar">
+            <div class="view-toggle-group">
+                <button id="btnMasterCurrent" class="sub-btn active" onclick="setMasterScope('current')">Current Period (<span class="current-period-label"></span>)</button>
+                <button id="btnMasterAll" class="sub-btn" onclick="setMasterScope('all')">All Classes Master Grid</button>
+            </div>
+            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Tap any student card to view/edit full weekly IB log</span>
+        </div>
+
+        <div id="masterGridContainer"></div>
         
         <div class="action-container">
-            <div class="action-section-title">Save &amp; Restore Complete App State (All Periods)</div>
+            <div class="action-section-title">Daily vs. Weekly Workflow Controls</div>
             <div class="export-group">
-                <button class="action-btn btn-save-html" onclick="saveStateToHTMLFile()">💾 Save Self-Contained .HTML</button>
+                <button class="action-btn btn-csv" style="background:var(--info-color);" onclick="startFreshDayAllClasses()">🌅 End Day / Start Fresh Tomorrow</button>
+                <button class="action-btn reset-btn" style="margin:0; background:#9b2c2c;" onclick="resetAllPeriodsWeekly()">🧹 End of Week: Clear All Weekly Data</button>
+            </div>
+
+            <div class="action-section-title" style="margin-top:8px;">Export All Classes Master Report</div>
+            <div class="export-group">
+                <button class="action-btn btn-csv" onclick="exportAllCSV()">Download Master CSV (All Classes)</button>
+                <button class="action-btn btn-md" onclick="exportAllMD()">Download Master .MD (All Classes)</button>
+                <button class="action-btn btn-copy" onclick="copyAllSummary()">Copy All Classes Summary</button>
+            </div>
+
+            <div class="action-section-title" style="margin-top:8px;">Optional File Backups & Default Seating</div>
+            <div class="export-group">
+                <button class="action-btn btn-save-html" onclick="saveStateToHTMLFile()">💾 Download Backup .HTML</button>
                 <button class="action-btn btn-copy" onclick="exportStateJSON()">Export Backup (.json)</button>
                 <button class="action-btn btn-copy" onclick="document.getElementById('importFileInput').click()">Load Backup (.json)</button>
                 <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importStateJSON(event)">
+                <button class="action-btn btn-copy" style="border-color:var(--warning-color); color:var(--warning-color);" onclick="restoreDefaultSeating()">Restore Default Seating</button>
             </div>
-
-            <div class="action-section-title" style="margin-top:8px;">Export Current Period (<span class="current-period-label">Period 8</span>)</div>
-            <div class="export-group">
-                <button class="action-btn btn-csv" onclick="exportCSV()">Download CSV</button>
-                <button class="action-btn btn-md" onclick="exportMD()">Download .MD</button>
-                <button class="action-btn btn-copy" onclick="copySummary()">Copy Summary</button>
-                <button class="action-btn btn-attendance-reset" onclick="resetAttendance()">Reset Attendance</button>
-            </div>
-            <button class="action-btn reset-btn" onclick="resetWeek()">Reset Current Period Data</button>
         </div>
     </div>
 
-    <!-- STUDENT ACTION MODAL -->
+    <!-- PODIUM QUICK ACTION MODAL -->
     <div id="actionModal" class="modal-overlay" onclick="handleOverlayClick(event, 'actionModal')">
         <div class="modal-content">
-            <h3 id="modalStudentName" class="modal-title">Dre</h3>
+            <div style="font-size:11px; color:var(--text-muted); font-weight:800; text-transform:uppercase;" id="modalSeatBadge">Seat</div>
+            <h3 id="modalStudentName" class="modal-title">Student Name</h3>
             
             <div class="section-label">Daily Attendance</div>
             <div class="attendance-group">
                 <button id="attPresent" class="att-btn present" onclick="setAttendance('Present')">Present</button>
                 <button id="attTardy" class="att-btn tardy" onclick="setAttendance('Tardy')">Tardy</button>
-                <button id="attAbsent" class="att-btn absent active" onclick="setAttendance('Absent')">Absent</button>
+                <button id="attAbsent" class="att-btn absent" onclick="setAttendance('Absent')">Absent</button>
             </div>
 
-            <div class="section-label">Deduct Participation Point (-1)</div>
+            <div class="section-label">Deduct Participation Point Today (-1)</div>
             <button class="reason-btn btn-offtask" onclick="logEvent('deduction', 'Off-Task / Disruptive')">Off-Task / Disruptive</button>
             <button class="reason-btn btn-unprepared" onclick="logEvent('deduction', 'Unprepared / Posture')">Unprepared / Posture</button>
             <button class="reason-btn btn-engagement" onclick="logEvent('deduction', 'Low Engagement')">Low Engagement</button>
 
-            <div class="section-label">Award Kudos (+1)</div>
+            <div class="section-label">Award Kudos Today (+1)</div>
             <div class="kudos-grid">
                 <button class="kudos-btn" onclick="logEvent('kudos', 'Leadership')">★ Leadership</button>
                 <button class="kudos-btn" onclick="logEvent('kudos', 'Vocal Posture')">★ Posture</button>
@@ -1169,8 +943,49 @@
             </div>
 
             <div class="modal-footer">
-                <button id="undoBtn" class="reason-btn btn-undo" onclick="undoLast()" disabled="">Undo Last</button>
+                <button id="undoBtn" class="reason-btn btn-undo" onclick="undoLast()">Undo Last</button>
                 <button class="reason-btn btn-cancel" onclick="closeModal('actionModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- IB MASTER STUDENT PROFILE MODAL -->
+    <div id="studentDetailModal" class="modal-overlay" onclick="handleOverlayClick(event, 'studentDetailModal')">
+        <div class="modal-content">
+            <div style="font-size:12px; color:var(--accent-color); font-weight:800; text-transform:uppercase;" id="detailPeriodName">Period</div>
+            <h3 id="detailStudentName" class="modal-title">Student Name</h3>
+
+            <div class="profile-summary-row">
+                <div class="profile-stat-box">
+                    <div class="profile-stat-num" style="color:var(--accent-color)" id="detailIBScore">8</div>
+                    <div class="profile-stat-lbl">Weekly IB</div>
+                </div>
+                <div class="profile-stat-box">
+                    <div class="profile-stat-num" style="color:var(--danger-color)" id="detailDedCount">0</div>
+                    <div class="profile-stat-lbl">Week Ded.</div>
+                </div>
+                <div class="profile-stat-box">
+                    <div class="profile-stat-num" style="color:var(--kudos-color)" id="detailKudosCount">+0</div>
+                    <div class="profile-stat-lbl">Week Kudos</div>
+                </div>
+            </div>
+
+            <div class="section-label">Today's Attendance Status</div>
+            <div class="attendance-group">
+                <button id="detailAttPresent" class="att-btn present" onclick="setDetailAttendance('Present')">Present</button>
+                <button id="detailAttTardy" class="att-btn tardy" onclick="setDetailAttendance('Tardy')">Tardy</button>
+                <button id="detailAttAbsent" class="att-btn absent" onclick="setDetailAttendance('Absent')">Absent</button>
+            </div>
+
+            <div class="section-label">Weekly Category Breakdown</div>
+            <div id="detailCategorySummary" style="font-size:13px; color:var(--text-muted); text-align:left; background:#141414; padding:10px; border-radius:8px;"></div>
+
+            <div class="section-label">Full Weekly Activity Log (Today + Archived Days)</div>
+            <div class="history-log-list" id="detailHistoryList"></div>
+
+            <div class="modal-footer">
+                <button class="reason-btn btn-undo" onclick="openQuickLogFromDetail()">+ Log Point / Kudos</button>
+                <button class="reason-btn btn-cancel" onclick="closeModal('studentDetailModal')">Done</button>
             </div>
         </div>
     </div>
@@ -1178,1006 +993,238 @@
     <!-- PERIOD / ROSTER MANAGEMENT MODAL -->
     <div id="periodModal" class="modal-overlay" onclick="handleOverlayClick(event, 'periodModal')">
         <div class="modal-content">
-            <h3 id="periodModalTitle" class="modal-title">Edit Period 1</h3>
+            <h3 id="periodModalTitle" class="modal-title">Manage Period</h3>
             
             <div class="section-label">Period Name</div>
-            <input type="text" id="periodNameInput" class="input-field" placeholder="e.g., Period 8 (7th Choir)">
+            <input type="text" id="periodNameInput" class="input-field" placeholder="e.g., Period 1">
 
-            <div class="section-label">Student Roster (One name per line)</div>
-            <textarea id="periodRosterInput" class="textarea-field" placeholder="Enter student names, one per line..."></textarea>
+            <div class="section-label">Student Roster (Format: "Name SeatCode" e.g. Kaydence L6)</div>
+            <textarea id="periodRosterInput" class="textarea-field" placeholder="Kaydence L6&#10;Easton L7&#10;Liam L8"></textarea>
 
             <div class="modal-footer">
-                <button id="deletePeriodBtn" class="reason-btn" style="background: var(--danger-color); color: rgb(255, 255, 255); flex: 0.8 1 0%; display: block;" onclick="deleteCurrentPeriod()">Delete</button>
+                <button id="deletePeriodBtn" class="reason-btn" style="background:var(--danger-color); color:#fff; flex:0.8;" onclick="deleteCurrentPeriod()">Delete</button>
                 <button class="reason-btn btn-cancel" onclick="closeModal('periodModal')">Cancel</button>
                 <button class="reason-btn" style="background:var(--success-color); color:#000; flex:1;" onclick="savePeriodSettings()">Save</button>
             </div>
         </div>
     </div>
 
-    <div id="toast" class="toast" style="display: none;">Period saved!</div>
+    <!-- CLOUD SYNC SETUP MODAL -->
+    <div id="cloudModal" class="modal-overlay" onclick="handleOverlayClick(event, 'cloudModal')">
+        <div class="modal-content">
+            <h3 class="modal-title">☁️ Auto Cloud Sync</h3>
+            <p style="font-size:13px; color:var(--text-muted); margin:0; line-height:1.4;">
+                Both your Master Key and Bin ID are permanently baked into this file. Every device that opens this page automatically syncs to the same cloud database.
+            </p>
+            
+            <div class="section-label">1. JSONBin.io X-Master-Key (Baked In)</div>
+            <input type="password" id="cloudApiKeyInput" class="input-field" placeholder="Master Key">
 
-    <!-- EMBEDDED STATE ANCHOR: Holds full state when you click "Save App File (.html)" -->
-    <script id="embedded-app-state" type="application/json">{
-  "activePeriodId": "p_1791984501281",
-  "periods": [
-    {
-      "id": "p1",
-      "name": "Period 1",
-      "students": [
-        null,
-        {
-          "id": "7_1791984826280",
-          "name": "Kaydence",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "6_1791984826280",
-          "name": "Easton",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "8_1791984826280",
-          "name": "Liam",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        {
-          "id": "5_1791984826280",
-          "name": "Ja'veah",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "4_1791984826280",
-          "name": "Vivian",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "3_1791984826280",
-          "name": "Anahys",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        null,
-        null,
-        null,
-        null,
-        {
-          "id": "0_1791984826280",
-          "name": "Layla",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "1_1791984826280",
-          "name": "London",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "2_1791984826280",
-          "name": "Mischalay",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null
-      ]
-    },
-    {
-      "id": "p_1791984464205",
-      "name": "Period 3",
-      "students": [
-        {
-          "id": "6_1791984475126",
-          "name": "Tristan",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "11_1791984475126",
-          "name": "Prince",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "9_1791984475126",
-          "name": "Keegan",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "0_1791984475126",
-          "name": "Jadiel",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "5_1791984475126",
-          "name": "Londyn C.",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "3_1791984475126",
-          "name": "Lala",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "8_1791984475126",
-          "name": "Lila",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "13_1791984475126",
-          "name": "Londyn S.",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "1_1791984475126",
-          "name": "Aubrielle",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "2_1791984475126",
-          "name": "Emi",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "7_1791984475126",
-          "name": "Violet",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "12_1791984475126",
-          "name": "Bradley",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "4_1791984475126",
-          "name": "Dre",
-          "attendance": "Absent",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "10_1791984475126",
-          "name": "Jordan",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ]
-    },
-    {
-      "id": "p_1791984492823",
-      "name": "IB Seminar",
-      "students": [
-        {
-          "id": "1_1791984642304",
-          "name": "Jayla",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "5_1791984642304",
-          "name": "Lala",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "0_1791984642304",
-          "name": "Jadiel",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "8_1791984642304",
-          "name": "Copeland",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "9_1791984642304",
-          "name": "Brock",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "11_1791984642304",
-          "name": "Mason",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:46 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "7_1791984642304",
-          "name": "Kayson",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "18_1791984642304",
-          "name": "Bryleigh",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "13_1791984642304",
-          "name": "Aiden",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:51 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "12_1791984642304",
-          "name": "Egypt",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "16_1791984642304",
-          "name": "Jackson",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "10_1791984642304",
-          "name": "Lila",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:51 AM"
-            }
-          ],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "2_1791984642304",
-          "name": "Corbin",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:50 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "4_1791984642304",
-          "name": "Sydney",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:46 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "6_1791984642304",
-          "name": "Dre",
-          "attendance": "Absent",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "20_1791984642304",
-          "name": "Joseph",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:50 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:51 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "14_1791984642304",
-          "name": "Jose",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:46 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "15_1791984642304",
-          "name": "Ava",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "3_1791984642304",
-          "name": "Violet",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "21_1791984642304",
-          "name": "Amari",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "19_1791984642304",
-          "name": "William",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:48 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "17_1791984642304",
-          "name": "Bradley",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        },
-        {
-          "id": "22_1791984642304",
-          "name": "Dalton",
-          "attendance": "Present",
-          "history": [
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:46 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:47 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            },
-            {
-              "reason": "Off-Task / Disruptive",
-              "day": "Wed",
-              "time": "10:49 AM"
-            }
-          ],
-          "kudos": []
-        }
-      ]
-    },
-    {
-      "id": "p_1791984496436",
-      "name": "Period 5",
-      "students": [
-        null,
-        null,
-        {
-          "id": "5_1791984744173",
-          "name": "Brysan",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "9_1791984744173",
-          "name": "Jax",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "0_1791984744173",
-          "name": "Brooklyn",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "8_1791984744173",
-          "name": "Cora",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "15_1791984744173",
-          "name": "Ry'Nia",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        null,
-        null,
-        null,
-        {
-          "id": "6_1791984744173",
-          "name": "Amour",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "7_1791984744173",
-          "name": "Daisy",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "4_1791984744173",
-          "name": "Kennedy",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "11_1791984744173",
-          "name": "Korrina",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "10_1791984744173",
-          "name": "Kee'Yauni",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "12_1791984744173",
-          "name": "Jayce",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "14_1791984744173",
-          "name": "Labrandyn",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "16_1791984744173",
-          "name": "Taniah",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "2_1791984744173",
-          "name": "Margo",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "3_1791984744173",
-          "name": "Evelyn",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "1_1791984744173",
-          "name": "Shar",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "13_1791984744173",
-          "name": "Adi",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        }
-      ]
-    },
-    {
-      "id": "p_1791984501281",
-      "name": "Period 8",
-      "students": [
-        {
-          "id": "21_1791984501281",
-          "name": "Lily",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "7_1791984501281",
-          "name": "Ana",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "15_1791984501281",
-          "name": "Jocelyn",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "19_1791984501281",
-          "name": "Mackenzie",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "20_1791984501281",
-          "name": "Forever",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "10_1791984501281",
-          "name": "Azi",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "3_1791984501281",
-          "name": "Delaney",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "11_1791984501281",
-          "name": "Louie",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "17_1791984501281",
-          "name": "Hasan",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "1_1791984501281",
-          "name": "J. C.",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "5_1791984501281",
-          "name": "Lee",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "6_1791984501281",
-          "name": "Sanchez",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "12_1791984501281",
-          "name": "Jace",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "9_1791984501281",
-          "name": "Jaceon",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        null,
-        {
-          "id": "0_1791984501281",
-          "name": "Mika",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "4_1791984501281",
-          "name": "Charlee",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "16_1791984501281",
-          "name": "Hayley",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "14_1791984501281",
-          "name": "Abra",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "18_1791984501281",
-          "name": "De'mia",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "13_1791984501281",
-          "name": "Kayleigh",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "2_1791984501281",
-          "name": "Averie",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        },
-        {
-          "id": "8_1791984501281",
-          "name": "Savanna",
-          "attendance": "Present",
-          "history": [],
-          "kudos": []
-        }
-      ]
-    }
-  ],
-  "lastSaved": 1792000918681
-}</script>
+            <div class="section-label">2. Shared Bin ID (Baked In)</div>
+            <input type="text" id="cloudBinIdInput" class="input-field" placeholder="Bin ID">
+
+            <div style="display:flex; gap:8px; margin-top:6px;">
+                <button class="reason-btn" style="background:var(--info-color); color:#000; flex:1; padding:10px; font-size:13px;" onclick="pullFromCloudNow(false)">⬇️ Pull from Cloud</button>
+                <button class="reason-btn" style="background:var(--success-color); color:#000; flex:1; padding:10px; font-size:13px;" onclick="pushToCloudNow(false)">⬆️ Push to Cloud</button>
+            </div>
+
+            <div class="modal-footer">
+                <button class="reason-btn btn-cancel" onclick="closeModal('cloudModal')">Close</button>
+                <button class="reason-btn" style="background:var(--accent-color); color:#000; flex:1;" onclick="saveCloudConfig()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Saved!</div>
+
+    <!-- EMBEDDED STATE ANCHOR -->
+    <script id="embedded-app-state" type="application/json">null</script>
 
     <script>
-        const PERIOD_8_ROSTER = [
-            "Mika", "J. C.", "Averie", "Delaney", "Charlee", "Lee", 
-            "Sanchez", "Ana", "Savanna", "Jaceon", "Azi", "Louie", 
-            "Jace", "Kayleigh", "Abra", "Jocelyn", "Hayley", "Hasan", 
-            "De'mia", "Mackenzie", "Forever", "Lily"
+        /* Request Persistent Storage on iPadOS Safari so Apple never auto-clears local storage */
+        if (navigator.storage && navigator.storage.persist) {
+            navigator.storage.persist();
+        }
+
+        /* BAKED-IN JSONBIN CREDENTIALS */
+        const DEFAULT_MASTER_KEY = "$2a$10$qb.VVGd2eyo1o4fH/6HtGeOVTrbXYdoq2kHzQpcHesz1vgD0QaJvy";
+        const DEFAULT_BIN_ID = "6acfd5c0ffd5d160536b6cfb";
+
+        const SEAT_CODES = [
+            "L5", "L6", "L7", "L8",
+            "L1", "L2", "L3", "L4",
+            "M5", "M6", "M7", "M8",
+            "M1", "M2", "M3", "M4", "M0",
+            "R5", "R6", "R7", "R8",
+            "R1", "R2", "R3", "R4"
         ];
 
-        // 3 Sections, 2 Rows: Left (4+4=8), Middle (4+5=9), Right (4+4=8) = 25 seats
+        const SEAT_CODE_TO_INDEX = {};
+        SEAT_CODES.forEach((code, idx) => { SEAT_CODE_TO_INDEX[code] = idx; });
+
+        const DEFAULT_PERIODS_CONFIG = [
+            {
+                id: 'p1',
+                name: 'Period 1',
+                roster: [
+                    "Kaydence L6", "Easton L7", "Liam L8",
+                    "Ja'veah M2", "Vivian M3", "Anahys M4",
+                    "Layla R1", "London R2", "Mischalay R3"
+                ]
+            },
+            {
+                id: 'p3',
+                name: 'Period 3',
+                roster: [
+                    "Tristan L5", "Prince L6", "Keegan L7", "Jadiel L8",
+                    "Londyn C. L2", "Lala L3", "Lila L4",
+                    "Londyn S. M5", "Aubrielle M6", "Emi M7", "Violet M8",
+                    "Bradley M2", "Dre M3", "Jordan M4"
+                ]
+            },
+            {
+                id: 'ib_sem',
+                name: 'IB Seminar',
+                roster: [
+                    "Jayla L5", "Lala L6", "Jadiel L7", "Copeland L8",
+                    "Brock L1", "Mason L2", "Kayson L3", "Bryleigh L4",
+                    "Aiden M5", "Egypt M6", "Jackson M7", "Lila M8",
+                    "Corbin M1", "Sydney M2", "Dre M3", "Joseph M4",
+                    "Jose R5", "Ava R6", "Violet R7",
+                    "Amari R1", "William R2", "Bradley R3", "Dalton R4"
+                ]
+            },
+            {
+                id: 'p5',
+                name: '5th Period',
+                roster: [
+                    "Brysan L7", "Jax L8",
+                    "Brooklyn L2", "Cora L3", "Ry'Nia L4",
+                    "Amour M1", "Daisy M2", "Kennedy M3", "Korrina M4", "Kee'Yauni M0",
+                    "Jayce R5", "Labrandyn R6", "Taniah R7",
+                    "Margo R1", "Evelyn R2", "Shar R3", "Adi R4"
+                ]
+            },
+            {
+                id: 'p8',
+                name: '8th Period',
+                roster: [
+                    "Lily R4", "Ana R3", "Mackenzie R2", "Jocelyn R1",
+                    "Forever R8", "Azi R7", "Delaney R6", "De'Mia R5",
+                    "Louie M1", "J. C. M2", "Sanchez M3", "Lee M4",
+                    "Jace M6", "Jaceon M7", "Hasan M8",
+                    "Mika L8", "Charlee L7", "Kayleigh L6",
+                    "Hayley L1", "Abra L2", "Averie L3", "Savanna L4"
+                ]
+            }
+        ];
+
         const TOTAL_STAGE_SEATS = 25;
-        const STORAGE_KEY = 'ibChoirAppState_v6_3section';
+        const STORAGE_KEY = 'ibChoirAppState_v8_daily_weekly';
+        const CLOUD_CONFIG_KEY = 'ibChoirCloudConfig_v1';
+
         let currentLayout = 'riser';
         let swapMode = false;
         let swapFirstIndex = null;
         let activeStudentIndex = null;
         let isCreatingNewPeriod = false;
 
-        function buildStudentsArray(namesArray) {
-            const arr = namesArray.map((name, idx) => ({
-                id: idx + '_' + Date.now(),
-                name: name.trim(),
-                attendance: 'Present',
-                history: [],
-                kudos: []
-            }));
-            // Pad up to 25 seats with null (Empty Seat placeholders) if there are students
-            if (arr.length > 0 && arr.length < TOTAL_STAGE_SEATS) {
-                while (arr.length < TOTAL_STAGE_SEATS) {
-                    arr.push(null);
+        let analyticsScope = 'ALL';
+        let masterScope = 'current';
+        let detailTarget = { periodId: null, studentIndex: null };
+        let cloudSyncTimeout = null;
+
+        function getTodayDateStr() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function normalizeStudentObject(s) {
+            if (!s) return null;
+            return {
+                id: s.id || ('s_' + Math.random().toString(36).slice(2, 8)),
+                name: s.name,
+                attendance: s.attendance || 'Present',
+                history: Array.isArray(s.history) ? s.history : [],
+                kudos: Array.isArray(s.kudos) ? s.kudos : [],
+                weeklyHistory: Array.isArray(s.weeklyHistory) ? s.weeklyHistory : [],
+                weeklyKudos: Array.isArray(s.weeklyKudos) ? s.weeklyKudos : []
+            };
+        }
+
+        function getCombinedWeeklyHistory(student) {
+            return [...(student.weeklyHistory || []), ...(student.history || [])];
+        }
+
+        function getCombinedWeeklyKudos(student) {
+            return [...(student.weeklyKudos || []), ...(student.kudos || [])];
+        }
+
+        function buildStudentsFromSeatedLines(lines, existingRealStudents = []) {
+            const seats = new Array(TOTAL_STAGE_SEATS).fill(null);
+            const unseated = [];
+
+            lines.forEach((rawLine, idx) => {
+                const line = rawLine.trim();
+                if (!line) return;
+
+                const match = line.match(/^(.*?)\s+([LMR][0-8])$/i);
+                let name = line;
+                let seatCode = null;
+
+                if (match) {
+                    name = match[1].trim();
+                    seatCode = match[2].toUpperCase();
                 }
-            }
-            return arr;
+
+                const existing = existingRealStudents.find(s => s.name.toLowerCase() === name.toLowerCase());
+                const studentObj = existing ? normalizeStudentObject({ ...existing, name: name }) : normalizeStudentObject({
+                    id: idx + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+                    name: name
+                });
+
+                if (seatCode && SEAT_CODE_TO_INDEX[seatCode] !== undefined) {
+                    const targetIdx = SEAT_CODE_TO_INDEX[seatCode];
+                    if (seats[targetIdx] === null) {
+                        seats[targetIdx] = studentObj;
+                    } else {
+                        unseated.push(studentObj);
+                    }
+                } else {
+                    unseated.push(studentObj);
+                }
+            });
+
+            unseated.forEach(studentObj => {
+                const emptyIdx = seats.indexOf(null);
+                if (emptyIdx !== -1) {
+                    seats[emptyIdx] = studentObj;
+                } else {
+                    seats.push(studentObj);
+                }
+            });
+
+            return seats;
         }
 
         function ensureStageCapacity(studentsList) {
-            const nonNullCount = studentsList.filter(Boolean).length;
-            if (nonNullCount > 0 && studentsList.length < TOTAL_STAGE_SEATS) {
-                while (studentsList.length < TOTAL_STAGE_SEATS) {
-                    studentsList.push(null);
-                }
+            if (!Array.isArray(studentsList)) return new Array(TOTAL_STAGE_SEATS).fill(null);
+            const normalized = studentsList.map(s => normalizeStudentObject(s));
+            while (normalized.length < TOTAL_STAGE_SEATS) {
+                normalized.push(null);
             }
-            return studentsList;
+            return normalized;
         }
 
         function createDefaultAppState() {
             return {
-                activePeriodId: 'p8',
-                periods: [
-                    { id: 'p1', name: 'Period 1', students: [] },
-                    { id: 'p2', name: 'Period 2', students: [] },
-                    { id: 'p8', name: 'Period 8', students: buildStudentsArray(PERIOD_8_ROSTER) }
-                ]
+                activePeriodId: 'p1',
+                currentDayDate: getTodayDateStr(),
+                periods: DEFAULT_PERIODS_CONFIG.map(cfg => ({
+                    id: cfg.id,
+                    name: cfg.name,
+                    students: buildStudentsFromSeatedLines(cfg.roster)
+                }))
             };
         }
 
@@ -2192,7 +1239,7 @@
 
             let localState = null;
             try {
-                const raw = localStorage.getItem(STORAGE_KEY);
+                const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('ibChoirAppState_v7_default_seating');
                 if (raw) localState = JSON.parse(raw);
             } catch (e) {}
 
@@ -2207,11 +1254,36 @@
                 chosen = createDefaultAppState();
             }
 
-            // Ensure every populated period has at least 25 slots for the 3-section layout
             chosen.periods.forEach(p => {
                 p.students = ensureStageCapacity(p.students || []);
             });
+
+            const todayStr = getTodayDateStr();
+            if (chosen.currentDayDate && chosen.currentDayDate !== todayStr) {
+                archiveDailyIntoWeekly(chosen, chosen.currentDayDate);
+                chosen.currentDayDate = todayStr;
+            } else if (!chosen.currentDayDate) {
+                chosen.currentDayDate = todayStr;
+            }
+
             return chosen;
+        }
+
+        function archiveDailyIntoWeekly(stateObj, dateLabel) {
+            stateObj.periods.forEach(p => {
+                p.students.forEach(s => {
+                    if (!s) return;
+                    if (s.history && s.history.length > 0) {
+                        s.weeklyHistory = [...(s.weeklyHistory || []), ...s.history];
+                        s.history = [];
+                    }
+                    if (s.kudos && s.kudos.length > 0) {
+                        s.weeklyKudos = [...(s.weeklyKudos || []), ...s.kudos];
+                        s.kudos = [];
+                    }
+                    s.attendance = 'Present';
+                });
+            });
         }
 
         let appState = loadAppState();
@@ -2225,8 +1297,16 @@
             return p;
         }
 
+        function getPeriodById(periodId) {
+            return appState.periods.find(p => p.id === periodId) || getActivePeriod();
+        }
+
         function getRealStudents(period) {
             return (period || getActivePeriod()).students.filter(Boolean);
+        }
+
+        function getSeatLabel(seatIndex) {
+            return SEAT_CODES[seatIndex] || `S${seatIndex + 1}`;
         }
 
         function saveData() {
@@ -2236,13 +1316,136 @@
             if (stateEl) {
                 stateEl.textContent = JSON.stringify(appState, null, 2);
             }
+            scheduleCloudPush();
         }
 
         function showToast(msg) {
             const t = document.getElementById('toast');
             t.innerText = msg;
             t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 2400);
+            setTimeout(() => { t.style.display = 'none'; }, 2600);
+        }
+
+        /* Start Fresh Day (Consolidates Today -> Weekly IB Vault) */
+        function startFreshDayAllClasses() {
+            if (confirm("End today's rehearsals and start fresh tomorrow?\n\n• Today's deductions & kudos will be safely locked into the Weekly IB Master.\n• All Podium cards will reset to 0 and Present for tomorrow.")) {
+                archiveDailyIntoWeekly(appState, getTodayDateStr());
+                appState.currentDayDate = getTodayDateStr();
+                saveData();
+                renderPodium();
+                renderAnalytics();
+                renderMaster();
+                showToast('Podium reset to 0! Weekly IB totals preserved.');
+            }
+        }
+
+        /* Cloud Sync (JSONBin.io with Baked-In Master Key & Bin ID) */
+        function getCloudConfig() {
+            let stored = {};
+            try {
+                stored = JSON.parse(localStorage.getItem(CLOUD_CONFIG_KEY)) || {};
+            } catch (e) {}
+            return {
+                apiKey: stored.apiKey || DEFAULT_MASTER_KEY,
+                binId: stored.binId || DEFAULT_BIN_ID
+            };
+        }
+
+        function updateCloudStatusUI(stateText) {
+            const cfg = getCloudConfig();
+            const btn = document.getElementById('cloudStatusBtn');
+            if (cfg.apiKey && cfg.binId) {
+                btn.className = 'status-chip synced';
+                btn.innerText = stateText || '☁️ Cloud Sync: Active';
+            } else {
+                btn.className = 'status-chip';
+                btn.innerText = '☁️ Cloud Sync: Off';
+            }
+        }
+
+        function openCloudModal() {
+            const cfg = getCloudConfig();
+            document.getElementById('cloudApiKeyInput').value = cfg.apiKey || '';
+            document.getElementById('cloudBinIdInput').value = cfg.binId || '';
+            document.getElementById('cloudModal').classList.add('active');
+        }
+
+        async function saveCloudConfig() {
+            const apiKey = document.getElementById('cloudApiKeyInput').value.trim() || DEFAULT_MASTER_KEY;
+            const binId = document.getElementById('cloudBinIdInput').value.trim() || DEFAULT_BIN_ID;
+            localStorage.setItem(CLOUD_CONFIG_KEY, JSON.stringify({ apiKey, binId }));
+            await pullFromCloudNow(false);
+        }
+
+        function scheduleCloudPush() {
+            const cfg = getCloudConfig();
+            if (!cfg.apiKey || !cfg.binId) return;
+            updateCloudStatusUI('☁️ Saving...');
+            if (cloudSyncTimeout) clearTimeout(cloudSyncTimeout);
+            cloudSyncTimeout = setTimeout(() => {
+                pushToCloudNow(true);
+            }, 1000);
+        }
+
+        async function pushToCloudNow(silent = false) {
+            const cfg = getCloudConfig();
+            if (!cfg.apiKey || !cfg.binId) return;
+            try {
+                const res = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': cfg.apiKey
+                    },
+                    body: JSON.stringify(appState)
+                });
+                if (!res.ok) throw new Error('Cloud push failed');
+                updateCloudStatusUI('☁️ Cloud Synced ✓');
+                if (!silent) showToast('Pushed latest data to cloud!');
+            } catch (e) {
+                updateCloudStatusUI('☁️ Local Safe');
+                if (!silent) alert('Could not reach Cloud Sync. Data is safe on your device.');
+            }
+        }
+
+        async function pullFromCloudNow(silent = false) {
+            const cfg = getCloudConfig();
+            if (!cfg.apiKey || !cfg.binId) return;
+            try {
+                updateCloudStatusUI('☁️ Syncing...');
+                const res = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`, {
+                    headers: { 'X-Master-Key': cfg.apiKey }
+                });
+                if (!res.ok) throw new Error('Cloud pull failed');
+                const data = await res.json();
+                const remoteState = data.record;
+                if (remoteState && Array.isArray(remoteState.periods)) {
+                    remoteState.periods.forEach(p => {
+                        p.students = ensureStageCapacity(p.students || []);
+                    });
+                    const todayStr = getTodayDateStr();
+                    if (remoteState.currentDayDate && remoteState.currentDayDate !== todayStr) {
+                        archiveDailyIntoWeekly(remoteState, remoteState.currentDayDate);
+                        remoteState.currentDayDate = todayStr;
+                    }
+                    appState = remoteState;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+                    renderPeriodBar();
+                    renderPodium();
+                    renderAnalytics();
+                    renderMaster();
+                    updateCloudStatusUI('☁️ Cloud Synced ✓');
+                    if (!silent) {
+                        closeModal('cloudModal');
+                        showToast('Loaded latest data from cloud!');
+                    }
+                } else {
+                    // If the cloud bin is currently empty or unformatted, push the default 5-period state to initialize it
+                    await pushToCloudNow(true);
+                }
+            } catch (e) {
+                updateCloudStatusUI('☁️ Offline (Local Safe)');
+            }
         }
 
         /* Period Bar & Switching */
@@ -2291,7 +1494,14 @@
                 const active = getActivePeriod();
                 modalTitle.innerText = `Edit ${active.name}`;
                 nameInput.value = active.name;
-                rosterInput.value = getRealStudents(active).map(s => s.name).join('\n');
+                const lines = [];
+                active.students.forEach((s, idx) => {
+                    if (s) {
+                        const code = SEAT_CODES[idx];
+                        lines.push(code ? `${s.name} ${code}` : s.name);
+                    }
+                });
+                rosterInput.value = lines.join('\n');
                 delBtn.style.display = appState.periods.length > 1 ? 'block' : 'none';
             }
             document.getElementById('periodModal').classList.add('active');
@@ -2309,28 +1519,14 @@
                 appState.periods.push({
                     id: newId,
                     name: nameVal,
-                    students: buildStudentsArray(rawLines)
+                    students: buildStudentsFromSeatedLines(rawLines)
                 });
                 appState.activePeriodId = newId;
             } else {
                 const active = getActivePeriod();
                 active.name = nameVal;
                 const existingReal = getRealStudents(active);
-                const updatedStudents = rawLines.map((name, idx) => {
-                    const existing = existingReal.find(s => s.name.toLowerCase() === name.toLowerCase());
-                    if (existing) {
-                        existing.name = name;
-                        return existing;
-                    }
-                    return {
-                        id: idx + '_' + Date.now(),
-                        name: name,
-                        attendance: 'Present',
-                        history: [],
-                        kudos: []
-                    };
-                });
-                active.students = ensureStageCapacity(updatedStudents);
+                active.students = buildStudentsFromSeatedLines(rawLines, existingReal);
             }
 
             saveData();
@@ -2339,7 +1535,7 @@
             renderPodium();
             renderAnalytics();
             renderMaster();
-            showToast('Period saved!');
+            showToast('Period & seating saved!');
         }
 
         function deleteCurrentPeriod() {
@@ -2354,6 +1550,19 @@
                 renderPodium();
                 renderAnalytics();
                 renderMaster();
+            }
+        }
+
+        function restoreDefaultSeating() {
+            if (confirm('Restore the default 5 periods and original seating chart? (This will reset current weekly points.)')) {
+                appState = createDefaultAppState();
+                saveData();
+                renderPeriodBar();
+                renderPodium();
+                renderAnalytics();
+                renderMaster();
+                switchTab('podium');
+                showToast('Default rosters & seating restored!');
             }
         }
 
@@ -2383,24 +1592,30 @@
 
         function createSeatElement(student, seatIndex) {
             const btn = document.createElement('button');
+            const seatCode = getSeatLabel(seatIndex);
 
             if (!student) {
                 let classes = ['student-btn', 'empty-seat'];
                 if (swapMode && swapFirstIndex === seatIndex) classes.push('swap-selected');
                 btn.className = classes.join(' ');
-                btn.innerHTML = `<span>Empty Seat</span>`;
+                btn.innerHTML = `
+                    <span class="seat-code-tag">${seatCode}</span>
+                    <span>Empty</span>
+                `;
                 btn.onclick = () => {
                     if (swapMode) {
                         handleCardTap(seatIndex);
                     } else {
-                        showToast('Tap "Edit Seating (Swap)" to move a student here');
+                        showToast(`Seat ${seatCode} is empty. Tap "Edit Seating" to move a student here.`);
                     }
                 };
                 return btn;
             }
 
-            const deductions = student.history.length;
-            const kudosCount = student.kudos.length;
+            const todayDeductions = student.history.length;
+            const todayKudos = student.kudos.length;
+            const weekTotalDed = getCombinedWeeklyHistory(student).length;
+            const weekIB = Math.max(1, 8 - weekTotalDed);
             
             let classes = ['student-btn'];
             if (student.attendance === 'Absent') classes.push('absent');
@@ -2414,17 +1629,19 @@
             if (student.attendance === 'Tardy') statusPill = `<span class="status-pill tardy">Tardy</span>`;
             if (student.attendance === 'Absent') statusPill = `<span class="status-pill absent">Absent</span>`;
 
-            const dedBadgeClass = deductions === 0 ? 'badge zero' : 'badge deduction';
-            const dedBadgeText = deductions === 0 ? '0' : `-${deductions}`;
-            const kudosBadge = kudosCount > 0 ? `<div class="badge kudos">+${kudosCount}</div>` : '';
+            const dedBadgeClass = todayDeductions === 0 ? 'badge zero' : 'badge deduction';
+            const dedBadgeText = todayDeductions === 0 ? '0' : `-${todayDeductions}`;
+            const kudosBadge = todayKudos > 0 ? `<div class="badge kudos">+${todayKudos}</div>` : '';
 
             btn.innerHTML = `
+                <span class="seat-code-tag">${seatCode}</span>
                 ${statusPill}
                 <span class="student-name">${student.name}</span>
                 <div class="badge-row">
                     <div class="${dedBadgeClass}">${dedBadgeText}</div>
                     ${kudosBadge}
                 </div>
+                <span class="week-mini-tag">Wk IB: ${weekIB}</span>
             `;
             return btn;
         }
@@ -2467,27 +1684,26 @@
                 const threeSecGrid = document.createElement('div');
                 threeSecGrid.className = 'three-sections-container';
 
-                // Exact 3-Section, 2-Row Definition (25 seats total)
                 const sectionsConfig = [
                     {
-                        title: 'Left Side',
+                        title: 'Left Side (L)',
                         rows: [
-                            { label: 'Back Row (4)', cols: 4, indices: [0, 1, 2, 3] },
-                            { label: 'Front Row (4)', cols: 4, indices: [4, 5, 6, 7] }
+                            { label: 'Back Row (L5 – L8)', cols: 4, indices: [0, 1, 2, 3] },
+                            { label: 'Front Row (L1 – L4)', cols: 4, indices: [4, 5, 6, 7] }
                         ]
                     },
                     {
-                        title: 'Middle Section',
+                        title: 'Middle Section (M)',
                         rows: [
-                            { label: 'Back Row (4)', cols: 4, indices: [8, 9, 10, 11] },
-                            { label: 'Front Row (5)', cols: 5, indices: [12, 13, 14, 15, 16] }
+                            { label: 'Back Row (M5 – M8)', cols: 4, indices: [8, 9, 10, 11] },
+                            { label: 'Front Row (M1 – M4, M0)', cols: 5, indices: [12, 13, 14, 15, 16] }
                         ]
                     },
                     {
-                        title: 'Right Side',
+                        title: 'Right Side (R)',
                         rows: [
-                            { label: 'Back Row (4)', cols: 4, indices: [17, 18, 19, 20] },
-                            { label: 'Front Row (4)', cols: 4, indices: [21, 22, 23, 24] }
+                            { label: 'Back Row (R5 – R8)', cols: 4, indices: [17, 18, 19, 20] },
+                            { label: 'Front Row (R1 – R4)', cols: 4, indices: [21, 22, 23, 24] }
                         ]
                     }
                 ];
@@ -2518,7 +1734,6 @@
 
                 stageWrapper.appendChild(threeSecGrid);
 
-                // If a period ever has more than 25 students, show an overflow row so no one is lost
                 if (studentsData.length > TOTAL_STAGE_SEATS) {
                     const overflowBox = document.createElement('div');
                     overflowBox.className = 'section-block';
@@ -2566,6 +1781,7 @@
             activeStudentIndex = index;
             const student = getActivePeriod().students[index];
             if (!student) return;
+            document.getElementById('modalSeatBadge').innerText = `${getActivePeriod().name} • Seat ${getSeatLabel(index)}`;
             document.getElementById('modalStudentName').innerText = student.name;
             
             document.getElementById('attPresent').classList.toggle('active', student.attendance === 'Present');
@@ -2594,6 +1810,7 @@
             saveData();
             openStudentModal(activeStudentIndex);
             renderPodium();
+            renderMaster();
         }
 
         function getDayShort() {
@@ -2605,7 +1822,12 @@
             if (activeStudentIndex === null) return;
             const student = getActivePeriod().students[activeStudentIndex];
             if (!student) return;
-            const entry = { reason: label, day: getDayShort(), time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) };
+            const entry = {
+                reason: label,
+                day: getDayShort(),
+                date: getTodayDateStr(),
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
             if (type === 'deduction') {
                 student.history.push(entry);
             } else {
@@ -2613,6 +1835,7 @@
             }
             saveData();
             renderPodium();
+            renderMaster();
             closeModal('actionModal');
         }
 
@@ -2627,6 +1850,7 @@
             }
             saveData();
             renderPodium();
+            renderMaster();
             closeModal('actionModal');
         }
 
@@ -2639,41 +1863,123 @@
             return Object.entries(counts).map(([k, v]) => `${v}x ${k}`).join(', ');
         }
 
+        /* ANALYTICS: Master & Per-Class (Uses Combined Weekly Data) */
+        function setAnalyticsScope(scope) {
+            analyticsScope = scope;
+            renderAnalytics();
+        }
+
+        function computePeriodMetrics(studentsList) {
+            let weekDed = 0, todayDed = 0, weekKudos = 0, ibSum = 0, absent = 0, tardy = 0;
+            studentsList.forEach(s => {
+                const wD = getCombinedWeeklyHistory(s).length;
+                const tD = (s.history || []).length;
+                const wK = getCombinedWeeklyKudos(s).length;
+                weekDed += wD;
+                todayDed += tD;
+                weekKudos += wK;
+                ibSum += Math.max(1, 8 - wD);
+                if (s.attendance === 'Absent') absent++;
+                if (s.attendance === 'Tardy') tardy++;
+            });
+            const avgIB = studentsList.length > 0 ? (ibSum / studentsList.length).toFixed(1) : '8.0';
+            return { count: studentsList.length, ded: weekDed, todayDed, kudos: weekKudos, avgIB, ibSum, absent, tardy };
+        }
+
         function renderAnalytics() {
-            const studentsData = getRealStudents();
-            let totalDed = 0;
-            let totalKudos = 0;
-            let ibSum = 0;
-            let absentCount = 0;
-            let tardyCount = 0;
+            const scopeBar = document.getElementById('analyticsScopeBar');
+            scopeBar.innerHTML = '';
+
+            const allBtn = document.createElement('button');
+            allBtn.className = 'sub-btn' + (analyticsScope === 'ALL' ? ' active' : '');
+            allBtn.innerText = 'All Classes (Master)';
+            allBtn.onclick = () => setAnalyticsScope('ALL');
+            scopeBar.appendChild(allBtn);
+
+            appState.periods.forEach(p => {
+                const b = document.createElement('button');
+                b.className = 'sub-btn' + (analyticsScope === p.id ? ' active' : '');
+                b.innerText = p.name;
+                b.onclick = () => setAnalyticsScope(p.id);
+                scopeBar.appendChild(b);
+            });
+
+            const tbody = document.getElementById('classComparisonBody');
+            tbody.innerHTML = '';
+            let grandCount = 0, grandDed = 0, grandTodayDed = 0, grandKudos = 0, grandIBSum = 0, grandAbsent = 0, grandTardy = 0;
+
+            appState.periods.forEach(p => {
+                const real = getRealStudents(p);
+                const m = computePeriodMetrics(real);
+                grandCount += m.count;
+                grandDed += m.ded;
+                grandTodayDed += m.todayDed;
+                grandKudos += m.kudos;
+                grandIBSum += m.ibSum;
+                grandAbsent += m.absent;
+                grandTardy += m.tardy;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${p.name}</td>
+                    <td>${m.count}</td>
+                    <td style="color:var(--accent-color)">${m.avgIB} / 8</td>
+                    <td style="color:var(--danger-color)">-${m.ded}</td>
+                    <td style="color:var(--info-color)">-${m.todayDed}</td>
+                    <td style="color:var(--kudos-color)">+${m.kudos}</td>
+                    <td style="color:var(--warning-color)">${m.absent} / ${m.tardy}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const grandAvg = grandCount > 0 ? (grandIBSum / grandCount).toFixed(1) : '8.0';
+            const totalRow = document.createElement('tr');
+            totalRow.className = 'total-row';
+            totalRow.innerHTML = `
+                <td>All Classes Total</td>
+                <td>${grandCount}</td>
+                <td>${grandAvg} / 8</td>
+                <td style="color:var(--danger-color)">-${grandDed}</td>
+                <td style="color:var(--info-color)">-${grandTodayDed}</td>
+                <td style="color:var(--kudos-color)">+${grandKudos}</td>
+                <td style="color:var(--warning-color)">${grandAbsent} / ${grandTardy}</td>
+            `;
+            tbody.appendChild(totalRow);
+
+            let targetStudents = [];
+            let scopeTitle = 'All Classes';
+            if (analyticsScope === 'ALL') {
+                appState.periods.forEach(p => {
+                    targetStudents = targetStudents.concat(getRealStudents(p));
+                });
+            } else {
+                const p = getPeriodById(analyticsScope);
+                targetStudents = getRealStudents(p);
+                scopeTitle = p.name;
+            }
+
+            document.getElementById('analyticsScopeLabel').innerText = scopeTitle;
+            document.getElementById('analyticsDayScopeLabel').innerText = scopeTitle;
+
+            const m = computePeriodMetrics(targetStudents);
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card"><div class="stat-label">${scopeTitle} Weekly IB</div><div class="stat-val">${m.avgIB} / 8</div></div>
+                <div class="stat-card"><div class="stat-label">Week Deductions</div><div class="stat-val" style="color:var(--danger-color)">-${m.ded}</div></div>
+                <div class="stat-card"><div class="stat-label">Today Deductions</div><div class="stat-val" style="color:var(--info-color)">-${m.todayDed}</div></div>
+                <div class="stat-card"><div class="stat-label">Week Kudos</div><div class="stat-val" style="color:var(--kudos-color)">+${m.kudos}</div></div>
+            `;
 
             const catCounts = { 'Off-Task / Disruptive': 0, 'Unprepared / Posture': 0, 'Low Engagement': 0 };
             const dayCounts = { 'Mon': 0, 'Tue': 0, 'Wed': 0, 'Thu': 0, 'Fri': 0 };
 
-            studentsData.forEach(s => {
-                const d = s.history.length;
-                totalDed += d;
-                totalKudos += s.kudos.length;
-                ibSum += Math.max(1, 8 - d);
-                if (s.attendance === 'Absent') absentCount++;
-                if (s.attendance === 'Tardy') tardyCount++;
-
-                s.history.forEach(h => {
+            targetStudents.forEach(s => {
+                getCombinedWeeklyHistory(s).forEach(h => {
                     const r = typeof h === 'string' ? h : h.reason;
                     const day = h.day || 'Mon';
                     if (catCounts[r] !== undefined) catCounts[r]++;
                     if (dayCounts[day] !== undefined) dayCounts[day]++;
                 });
             });
-
-            const avgIB = studentsData.length > 0 ? (ibSum / studentsData.length).toFixed(1) : '8.0';
-
-            document.getElementById('statsGrid').innerHTML = `
-                <div class="stat-card"><div class="stat-label">Class IB Average</div><div class="stat-val">${avgIB} / 8</div></div>
-                <div class="stat-card"><div class="stat-label">Total Deductions</div><div class="stat-val" style="color:var(--danger-color)">${totalDed}</div></div>
-                <div class="stat-card"><div class="stat-label">Total Kudos</div><div class="stat-val" style="color:var(--kudos-color)">+${totalKudos}</div></div>
-                <div class="stat-card"><div class="stat-label">Absent / Tardy</div><div class="stat-val" style="color:var(--warning-color)">${absentCount} / ${tardyCount}</div></div>
-            `;
 
             const maxCat = Math.max(1, ...Object.values(catCounts));
             document.getElementById('categoryCharts').innerHTML = Object.entries(catCounts).map(([cat, count]) => `
@@ -2692,32 +1998,210 @@
             `).join('');
         }
 
+        /* IB MASTER VIEW: Consolidates Full Week */
+        function setMasterScope(scope) {
+            masterScope = scope;
+            document.getElementById('btnMasterCurrent').classList.toggle('active', scope === 'current');
+            document.getElementById('btnMasterAll').classList.toggle('active', scope === 'all');
+            renderMaster();
+        }
+
+        function createMasterStudentCard(student, period, studentIdx) {
+            const weekDeductions = getCombinedWeeklyHistory(student).length;
+            const weekKudos = getCombinedWeeklyKudos(student).length;
+            const ibGrade = Math.max(1, 8 - weekDeductions);
+            const seatCode = getSeatLabel(studentIdx);
+
+            const btn = document.createElement('button');
+            let classes = ['student-btn'];
+            if (student.attendance === 'Absent') classes.push('absent');
+            if (student.attendance === 'Tardy') classes.push('tardy');
+            btn.className = classes.join(' ');
+
+            btn.onclick = () => openStudentDetailModal(period.id, studentIdx);
+
+            let statusPill = '';
+            if (student.attendance === 'Tardy') statusPill = `<span class="status-pill tardy">Tardy</span>`;
+            if (student.attendance === 'Absent') statusPill = `<span class="status-pill absent">Absent</span>`;
+
+            const dedBadge = weekDeductions > 0 ? `<div class="badge deduction">-${weekDeductions}</div>` : '';
+            const kudosBadge = weekKudos > 0 ? `<div class="badge kudos">+${weekKudos}</div>` : '';
+
+            btn.innerHTML = `
+                <span class="period-mini-tag">${seatCode}</span>
+                ${statusPill}
+                <span class="student-name" style="margin-top:10px;">${student.name}</span>
+                <div class="badge-row">
+                    <div class="badge ib-pill">IB: ${ibGrade}</div>
+                    ${dedBadge}
+                    ${kudosBadge}
+                </div>
+            `;
+            return btn;
+        }
+
         function renderMaster() {
-            const list = document.getElementById('masterList');
-            list.innerHTML = '';
-            const studentsData = getRealStudents();
+            const container = document.getElementById('masterGridContainer');
+            container.innerHTML = '';
 
-            const sorted = [...studentsData].sort((a, b) => a.name.localeCompare(b.name));
-            sorted.forEach(student => {
-                const deductions = student.history.length;
-                const ibGrade = Math.max(1, 8 - deductions);
-                const reasonStr = summarizeArray(student.history);
-                const kudosStr = summarizeArray(student.kudos);
+            const periodsToRender = masterScope === 'all' ? appState.periods : [getActivePeriod()];
 
-                const item = document.createElement('div');
-                item.className = 'list-item';
-                item.innerHTML = `
-                    <div class="list-item-header">
-                        <span>${student.name} <small style="color:var(--text-muted)">(${student.attendance})</small></span>
-                        <span class="ib-score">IB: ${ibGrade}</span>
-                    </div>
-                    <div class="log-details">
-                        Deductions (${deductions}): ${reasonStr || 'None'}<br>
-                        ${kudosStr ? `<span style="color:var(--kudos-color)">Kudos: ${kudosStr}</span>` : ''}
+            periodsToRender.forEach(period => {
+                const indexedStudents = period.students
+                    .map((s, idx) => ({ s, idx }))
+                    .filter(item => item.s !== null)
+                    .sort((a, b) => a.s.name.localeCompare(b.s.name));
+
+                const section = document.createElement('div');
+                section.className = 'master-period-section';
+
+                const metrics = computePeriodMetrics(indexedStudents.map(i => i.s));
+                section.innerHTML = `
+                    <div class="master-period-header">
+                        <span>${period.name} (${indexedStudents.length} Students)</span>
+                        <span>Weekly Class IB Avg: ${metrics.avgIB} / 8</span>
                     </div>
                 `;
-                list.appendChild(item);
+
+                if (indexedStudents.length === 0) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.style.cssText = 'color:var(--text-muted); font-size:13px; padding:12px; background:var(--surface-color); border-radius:8px;';
+                    emptyMsg.innerText = 'No students added to this period yet.';
+                    section.appendChild(emptyMsg);
+                } else {
+                    const grid = document.createElement('div');
+                    grid.className = 'alpha-grid';
+                    indexedStudents.forEach(item => {
+                        grid.appendChild(createMasterStudentCard(item.s, period, item.idx));
+                    });
+                    section.appendChild(grid);
+                }
+
+                container.appendChild(section);
             });
+        }
+
+        function openStudentDetailModal(periodId, studentIndex) {
+            detailTarget = { periodId, studentIndex };
+            const period = getPeriodById(periodId);
+            const student = period.students[studentIndex];
+            if (!student) return;
+
+            const allDed = getCombinedWeeklyHistory(student);
+            const allKud = getCombinedWeeklyKudos(student);
+            const ibGrade = Math.max(1, 8 - allDed.length);
+
+            document.getElementById('detailPeriodName').innerText = `${period.name} • Seat ${getSeatLabel(studentIndex)}`;
+            document.getElementById('detailStudentName').innerText = student.name;
+            document.getElementById('detailIBScore').innerText = ibGrade;
+            document.getElementById('detailDedCount').innerText = `-${allDed.length}`;
+            document.getElementById('detailKudosCount').innerText = `+${allKud.length}`;
+
+            document.getElementById('detailAttPresent').classList.toggle('active', student.attendance === 'Present');
+            document.getElementById('detailAttTardy').classList.toggle('active', student.attendance === 'Tardy');
+            document.getElementById('detailAttAbsent').classList.toggle('active', student.attendance === 'Absent');
+
+            const dedSummary = summarizeArray(allDed) || 'No deductions recorded this week';
+            const kudSummary = summarizeArray(allKud) || 'No kudos recorded this week';
+            document.getElementById('detailCategorySummary').innerHTML = `
+                <div style="margin-bottom:4px;"><strong style="color:var(--danger-color)">Weekly Deductions:</strong> ${dedSummary}</div>
+                <div><strong style="color:var(--kudos-color)">Weekly Kudos:</strong> ${kudSummary}</div>
+            `;
+
+            const logContainer = document.getElementById('detailHistoryList');
+            logContainer.innerHTML = '';
+
+            const combined = [
+                ...(student.weeklyHistory || []).map((h, i) => ({
+                    source: 'weeklyHistory',
+                    type: 'deduction',
+                    idx: i,
+                    reason: typeof h === 'string' ? h : h.reason,
+                    day: h.day || 'Archived',
+                    time: h.time || ''
+                })),
+                ...(student.history || []).map((h, i) => ({
+                    source: 'history',
+                    type: 'deduction',
+                    idx: i,
+                    reason: typeof h === 'string' ? h : h.reason,
+                    day: 'Today (' + (h.day || '') + ')',
+                    time: h.time || ''
+                })),
+                ...(student.weeklyKudos || []).map((k, i) => ({
+                    source: 'weeklyKudos',
+                    type: 'kudos',
+                    idx: i,
+                    reason: typeof k === 'string' ? k : k.reason,
+                    day: k.day || 'Archived',
+                    time: k.time || ''
+                })),
+                ...(student.kudos || []).map((k, i) => ({
+                    source: 'kudos',
+                    type: 'kudos',
+                    idx: i,
+                    reason: typeof k === 'string' ? k : k.reason,
+                    day: 'Today (' + (k.day || '') + ')',
+                    time: k.time || ''
+                }))
+            ];
+
+            if (combined.length === 0) {
+                logContainer.innerHTML = `<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:12px;">Perfect record! No infractions or kudos logged this week.</div>`;
+            } else {
+                combined.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'history-log-item';
+                    const badgeColor = item.type === 'deduction' ? 'var(--danger-color)' : 'var(--kudos-color)';
+                    const prefix = item.type === 'deduction' ? '-1' : '+1 ★';
+                    const timeMeta = `<small style="color:var(--text-muted); margin-left:6px;">${item.day} ${item.time}</small>`;
+
+                    row.innerHTML = `
+                        <div>
+                            <strong style="color:${badgeColor}">${prefix} ${item.reason}</strong>
+                            ${timeMeta}
+                        </div>
+                        <button class="log-remove-btn" onclick="removeSpecificLog('${item.source}', ${item.idx})">✕</button>
+                    `;
+                    logContainer.appendChild(row);
+                });
+            }
+
+            document.getElementById('studentDetailModal').classList.add('active');
+        }
+
+        function setDetailAttendance(status) {
+            const period = getPeriodById(detailTarget.periodId);
+            const student = period.students[detailTarget.studentIndex];
+            if (!student) return;
+            student.attendance = status;
+            saveData();
+            openStudentDetailModal(detailTarget.periodId, detailTarget.studentIndex);
+            renderPodium();
+            renderMaster();
+        }
+
+        function removeSpecificLog(sourceArrayName, logIdx) {
+            const period = getPeriodById(detailTarget.periodId);
+            const student = period.students[detailTarget.studentIndex];
+            if (!student || !Array.isArray(student[sourceArrayName])) return;
+            student[sourceArrayName].splice(logIdx, 1);
+            saveData();
+            openStudentDetailModal(detailTarget.periodId, detailTarget.studentIndex);
+            renderPodium();
+            renderMaster();
+            renderAnalytics();
+        }
+
+        function openQuickLogFromDetail() {
+            const { periodId, studentIndex } = detailTarget;
+            closeModal('studentDetailModal');
+            if (appState.activePeriodId !== periodId) {
+                appState.activePeriodId = periodId;
+                renderPeriodBar();
+                renderPodium();
+            }
+            openStudentModal(studentIndex);
         }
 
         function switchTab(tabId) {
@@ -2739,32 +2223,23 @@
             }
         }
 
-        function resetAttendance() {
-            getRealStudents().forEach(s => s.attendance = 'Present');
-            saveData();
-            renderMaster();
-            renderPodium();
-            showToast(`${getActivePeriod().name} attendance reset`);
-        }
-
-        function resetWeek() {
-            const active = getActivePeriod();
-            if (confirm(`Clear all weekly deductions, kudos, and attendance for ${active.name}? Make sure you have exported or saved your file first!`)) {
-                getRealStudents(active).forEach(s => {
-                    s.attendance = 'Present';
-                    s.history = [];
-                    s.kudos = [];
+        function resetAllPeriodsWeekly() {
+            if (confirm('END OF WEEK RESET:\n\nClear all weekly AND daily deductions, kudos, and attendance across every class period for a brand-new week?')) {
+                appState.periods.forEach(p => {
+                    getRealStudents(p).forEach(s => {
+                        s.attendance = 'Present';
+                        s.history = [];
+                        s.kudos = [];
+                        s.weeklyHistory = [];
+                        s.weeklyKudos = [];
+                    });
                 });
                 saveData();
                 renderPodium();
                 renderMaster();
-                switchTab('podium');
+                renderAnalytics();
+                showToast('All classes cleared for a brand-new week!');
             }
-        }
-
-        function getDateString() {
-            const d = new Date();
-            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
         }
 
         function downloadFile(filename, content, type) {
@@ -2779,19 +2254,17 @@
             URL.revokeObjectURL(url);
         }
 
-        /* Self-Contained HTML File Saver */
         function saveStateToHTMLFile() {
             saveData();
             const fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            downloadFile(`ChoirTracker_Saved_${getDateString()}.html`, fullHTML, 'text/html;charset=utf-8;');
+            downloadFile(`ChoirTracker_Saved_${getTodayDateStr()}.html`, fullHTML, 'text/html;charset=utf-8;');
             showToast('Self-contained .html file saved!');
         }
 
-        /* JSON State Backup & Restore */
         function exportStateJSON() {
             saveData();
             const jsonStr = JSON.stringify(appState, null, 2);
-            downloadFile(`ChoirTracker_Backup_${getDateString()}.json`, jsonStr, 'application/json;charset=utf-8;');
+            downloadFile(`ChoirTracker_Backup_${getTodayDateStr()}.json`, jsonStr, 'application/json;charset=utf-8;');
             showToast('Backup .json downloaded!');
         }
 
@@ -2824,51 +2297,70 @@
             event.target.value = '';
         }
 
-        /* Period CSV & Markdown Exports */
-        function buildCSV() {
-            const active = getActivePeriod();
-            let csv = "Period,Name,Attendance,Deductions,IB Grade,Deduction Reasons,Kudos\n";
-            const sorted = [...getRealStudents(active)].sort((a, b) => a.name.localeCompare(b.name));
-            sorted.forEach(s => {
-                const ded = s.history.length;
-                const ib = Math.max(1, 8 - ded);
-                const reasons = `"${summarizeArray(s.history)}"`;
-                const kudos = `"${summarizeArray(s.kudos)}"`;
-                csv += `"${active.name}","${s.name}",${s.attendance},${ded},${ib},${reasons},${kudos}\n`;
+        /* ALL-CLASSES MASTER EXPORTS (Uses Full Weekly Consolidated Data) */
+        function buildAllCSV() {
+            let csv = "Period,Seat,Name,Attendance,Today Deductions,Weekly Deductions,Weekly IB Grade,Weekly Deduction Reasons,Weekly Kudos\n";
+            appState.periods.forEach(period => {
+                const indexed = period.students
+                    .map((s, idx) => ({ s, idx }))
+                    .filter(item => item.s !== null)
+                    .sort((a, b) => a.s.name.localeCompare(b.s.name));
+                indexed.forEach(({ s, idx }) => {
+                    const todayDed = (s.history || []).length;
+                    const allDed = getCombinedWeeklyHistory(s);
+                    const allKud = getCombinedWeeklyKudos(s);
+                    const ib = Math.max(1, 8 - allDed.length);
+                    const reasons = `"${summarizeArray(allDed)}"`;
+                    const kudos = `"${summarizeArray(allKud)}"`;
+                    csv += `"${period.name}","${getSeatLabel(idx)}","${s.name}",${s.attendance},${todayDed},${allDed.length},${ib},${reasons},${kudos}\n`;
+                });
             });
             return csv;
         }
 
-        function buildMD() {
-            const active = getActivePeriod();
-            let md = `# IB Choir Participation Report — ${active.name} (${getDateString()})\n\n`;
-            md += `| Name | Attendance | Deductions | IB Grade | Reasons | Kudos |\n`;
-            md += `|---|---|---|---|---|---|\n`;
-            const sorted = [...getRealStudents(active)].sort((a, b) => a.name.localeCompare(b.name));
-            sorted.forEach(s => {
-                const ded = s.history.length;
-                const ib = Math.max(1, 8 - ded);
-                const reasons = summarizeArray(s.history) || "None";
-                const kudos = summarizeArray(s.kudos) || "None";
-                md += `| ${s.name} | ${s.attendance} | ${ded} | **${ib}** | ${reasons} | ${kudos} |\n`;
+        function buildAllMD() {
+            let md = `# IB Choir Weekly Master Report — All Classes (${getTodayDateStr()})\n\n`;
+            appState.periods.forEach(period => {
+                const indexed = period.students
+                    .map((s, idx) => ({ s, idx }))
+                    .filter(item => item.s !== null)
+                    .sort((a, b) => a.s.name.localeCompare(b.s.name));
+                const m = computePeriodMetrics(indexed.map(i => i.s));
+                md += `## ${period.name} (Students: ${m.count} | Weekly Class IB Avg: ${m.avgIB} / 8)\n\n`;
+                if (indexed.length === 0) {
+                    md += `*No students enrolled in this period.*\n\n`;
+                } else {
+                    md += `| Seat | Name | Attendance | Today Ded. | Week Ded. | Weekly IB Grade | Weekly Reasons | Weekly Kudos |\n`;
+                    md += `|---|---|---|---|---|---|---|---|\n`;
+                    indexed.forEach(({ s, idx }) => {
+                        const todayDed = (s.history || []).length;
+                        const allDed = getCombinedWeeklyHistory(s);
+                        const allKud = getCombinedWeeklyKudos(s);
+                        const ib = Math.max(1, 8 - allDed.length);
+                        const reasons = summarizeArray(allDed) || "None";
+                        const kudos = summarizeArray(allKud) || "None";
+                        md += `| ${getSeatLabel(idx)} | ${s.name} | ${s.attendance} | ${todayDed} | ${allDed.length} | **${ib}** | ${reasons} | ${kudos} |\n`;
+                    });
+                    md += `\n`;
+                }
             });
             return md;
         }
 
-        function exportCSV() {
-            const safeName = getActivePeriod().name.replace(/[^a-z0-9]/gi, '_');
-            downloadFile(`Choir_${safeName}_${getDateString()}.csv`, buildCSV(), 'text/csv;charset=utf-8;');
+        function exportAllCSV() {
+            downloadFile(`Choir_Weekly_Master_${getTodayDateStr()}.csv`, buildAllCSV(), 'text/csv;charset=utf-8;');
+            showToast('Weekly Master CSV exported!');
         }
 
-        function exportMD() {
-            const safeName = getActivePeriod().name.replace(/[^a-z0-9]/gi, '_');
-            downloadFile(`Choir_${safeName}_${getDateString()}.md`, buildMD(), 'text/markdown;charset=utf-8;');
+        function exportAllMD() {
+            downloadFile(`Choir_Weekly_Master_${getTodayDateStr()}.md`, buildAllMD(), 'text/markdown;charset=utf-8;');
+            showToast('Weekly Master .MD exported!');
         }
 
-        function copySummary() {
-            const md = buildMD();
+        function copyAllSummary() {
+            const md = buildAllMD();
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(md).then(() => showToast('Markdown report copied!'));
+                navigator.clipboard.writeText(md).then(() => showToast('Weekly Master Markdown copied!'));
             } else {
                 const ta = document.createElement('textarea');
                 ta.value = md;
@@ -2876,14 +2368,15 @@
                 ta.select();
                 document.execCommand('copy');
                 document.body.removeChild(ta);
-                showToast('Markdown report copied!');
+                showToast('Weekly Master Markdown copied!');
             }
         }
 
-        // Initialize App
+        // Initialize App & Auto-Connect to Cloud
+        updateCloudStatusUI();
         renderPeriodBar();
         renderPodium();
+        pullFromCloudNow(true);
     </script>
-
-
-</body></html>
+</body>
+</html>
