@@ -683,9 +683,9 @@
             <button class="quick-save-btn" onclick="saveStateToHTMLFile()">💾 Save App File (.html)</button>
         </div>
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchTab('podium')">Podium</button>
+            <button class="tab-btn" onclick="switchTab('podium')">Podium</button>
             <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
-            <button class="tab-btn" onclick="switchTab('master')">IB Master</button>
+            <button class="tab-btn active" onclick="switchTab('master')">IB Master</button>
         </div>
     </div>
 
@@ -699,7 +699,7 @@
     </div>
 
     <!-- PODIUM VIEW -->
-    <div id="podiumView" class="view-section active">
+    <div id="podiumView" class="view-section">
         <div class="sub-bar">
             <div class="view-toggle-group">
                 <button id="btnRiserLayout" class="sub-btn active" onclick="setLayout('riser')">3-Section Riser</button>
@@ -923,7 +923,7 @@
     </div>
 
     <!-- MASTER VIEW -->
-    <div id="masterView" class="view-section">
+    <div id="masterView" class="view-section active">
         <div class="master-list" id="masterList"><div class="list-item">
                     <div class="list-item-header">
                         <span>Abra <small style="color:var(--text-muted)">(Present)</small></span>
@@ -1147,13 +1147,13 @@
     <!-- STUDENT ACTION MODAL -->
     <div id="actionModal" class="modal-overlay" onclick="handleOverlayClick(event, 'actionModal')">
         <div class="modal-content">
-            <h3 id="modalStudentName" class="modal-title">Jaceon</h3>
+            <h3 id="modalStudentName" class="modal-title">Dre</h3>
             
             <div class="section-label">Daily Attendance</div>
             <div class="attendance-group">
-                <button id="attPresent" class="att-btn present active" onclick="setAttendance('Present')">Present</button>
+                <button id="attPresent" class="att-btn present" onclick="setAttendance('Present')">Present</button>
                 <button id="attTardy" class="att-btn tardy" onclick="setAttendance('Tardy')">Tardy</button>
-                <button id="attAbsent" class="att-btn absent" onclick="setAttendance('Absent')">Absent</button>
+                <button id="attAbsent" class="att-btn absent active" onclick="setAttendance('Absent')">Absent</button>
             </div>
 
             <div class="section-label">Deduct Participation Point (-1)</div>
@@ -1377,7 +1377,7 @@
         {
           "id": "4_1791984475126",
           "name": "Dre",
-          "attendance": "Present",
+          "attendance": "Absent",
           "history": [],
           "kudos": []
         },
@@ -1408,14 +1408,36 @@
           "id": "1_1791984642304",
           "name": "Jayla",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "5_1791984642304",
           "name": "Lala",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            }
+          ],
           "kudos": []
         },
         {
@@ -1443,49 +1465,156 @@
           "id": "11_1791984642304",
           "name": "Mason",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:46 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "7_1791984642304",
           "name": "Kayson",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "18_1791984642304",
           "name": "Bryleigh",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "13_1791984642304",
           "name": "Aiden",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:51 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "12_1791984642304",
           "name": "Egypt",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "16_1791984642304",
           "name": "Jackson",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "10_1791984642304",
           "name": "Lila",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:51 AM"
+            }
+          ],
           "kudos": []
         },
         null,
@@ -1493,20 +1622,62 @@
           "id": "2_1791984642304",
           "name": "Corbin",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:50 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "4_1791984642304",
           "name": "Sydney",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:46 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "6_1791984642304",
           "name": "Dre",
-          "attendance": "Present",
+          "attendance": "Absent",
           "history": [],
           "kudos": []
         },
@@ -1514,21 +1685,59 @@
           "id": "20_1791984642304",
           "name": "Joseph",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:50 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:51 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "14_1791984642304",
           "name": "Jose",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:46 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "15_1791984642304",
           "name": "Ava",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            }
+          ],
           "kudos": []
         },
         {
@@ -1550,21 +1759,69 @@
           "id": "19_1791984642304",
           "name": "William",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:48 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "17_1791984642304",
           "name": "Bradley",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         },
         {
           "id": "22_1791984642304",
           "name": "Dalton",
           "attendance": "Present",
-          "history": [],
+          "history": [
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:46 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:47 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            },
+            {
+              "reason": "Off-Task / Disruptive",
+              "day": "Wed",
+              "time": "10:49 AM"
+            }
+          ],
           "kudos": []
         }
       ]
@@ -1866,7 +2123,7 @@
       ]
     }
   ],
-  "lastSaved": 1791985292149
+  "lastSaved": 1792000918681
 }</script>
 
     <script>
