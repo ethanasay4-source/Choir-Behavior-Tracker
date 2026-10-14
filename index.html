@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -692,7 +691,7 @@
 
     <!-- MULTI-PERIOD BAR -->
     <div class="period-bar">
-        <div class="period-tabs" id="periodTabs"></div>
+        <div class="period-tabs" id="periodTabs"><button class="period-tab">Period 1 (9)</button><button class="period-tab">Period 3 (14)</button><button class="period-tab">IB Seminar (23)</button><button class="period-tab">Period 5 (17)</button><button class="period-tab active">Period 8 (22)</button></div>
         <div style="display:flex; gap:6px;">
             <button class="period-add-btn" onclick="openPeriodModal(true)">+ Add Period</button>
             <button class="period-manage-btn" onclick="openPeriodModal(false)">Edit Roster</button>
@@ -706,30 +705,427 @@
                 <button id="btnRiserLayout" class="sub-btn active" onclick="setLayout('riser')">3-Section Riser</button>
                 <button id="btnAlphaLayout" class="sub-btn" onclick="setLayout('alpha')">A–Z Grid</button>
             </div>
-            <button id="swapModeBtn" class="swap-btn" onclick="toggleSwapMode()">Edit Seating (Swap)</button>
+            <button id="swapModeBtn" class="swap-btn" onclick="toggleSwapMode()" style="display: block;">Edit Seating (Swap)</button>
         </div>
-        <div id="podiumContent"></div>
+        <div id="podiumContent"><div class="stage-wrapper"><div class="three-sections-container"><div class="section-block"><div class="section-header">Left Side</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
+                
+                <span class="student-name">Lily</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Ana</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Jocelyn</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Mackenzie</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button></div></div><div class="row-group"><div class="row-label">Front Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn empty-seat"><span>Empty Seat</span></button><button class="student-btn">
+                
+                <span class="student-name">Forever</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Azi</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Delaney</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button></div></div></div><div class="section-block"><div class="section-header">Middle Section</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
+                
+                <span class="student-name">Louie</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Hasan</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">J. C.</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Lee</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button></div></div><div class="row-group"><div class="row-label">Front Row (5)</div><div class="row-seats-grid cols-5"><button class="student-btn empty-seat"><span>Empty Seat</span></button><button class="student-btn">
+                
+                <span class="student-name">Sanchez</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Jace</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Jaceon</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn empty-seat"><span>Empty Seat</span></button></div></div></div><div class="section-block"><div class="section-header">Right Side</div><div class="row-group"><div class="row-label">Back Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
+                
+                <span class="student-name">Mika</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Charlee</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Hayley</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Abra</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button></div></div><div class="row-group"><div class="row-label">Front Row (4)</div><div class="row-seats-grid cols-4"><button class="student-btn">
+                
+                <span class="student-name">De'mia</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Kayleigh</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Averie</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button><button class="student-btn">
+                
+                <span class="student-name">Savanna</span>
+                <div class="badge-row">
+                    <div class="badge zero">0</div>
+                    
+                </div>
+            </button></div></div></div></div><div class="conductor-podium-marker">▲ Conductor Podium / Piano ▲</div></div></div>
     </div>
 
     <!-- ANALYTICS VIEW -->
     <div id="analyticsView" class="view-section">
-        <div class="stats-grid" id="statsGrid"></div>
+        <div class="stats-grid" id="statsGrid">
+                <div class="stat-card"><div class="stat-label">Class IB Average</div><div class="stat-val">8.0 / 8</div></div>
+                <div class="stat-card"><div class="stat-label">Total Deductions</div><div class="stat-val" style="color:var(--danger-color)">0</div></div>
+                <div class="stat-card"><div class="stat-label">Total Kudos</div><div class="stat-val" style="color:var(--kudos-color)">+0</div></div>
+                <div class="stat-card"><div class="stat-label">Absent / Tardy</div><div class="stat-val" style="color:var(--warning-color)">0 / 0</div></div>
+            </div>
         <div class="chart-box">
-            <h3>Deductions by Category (<span class="current-period-label"></span>)</h3>
-            <div id="categoryCharts"></div>
+            <h3>Deductions by Category (<span class="current-period-label">Period 8</span>)</h3>
+            <div id="categoryCharts">
+                <div class="bar-row">
+                    <div class="bar-label"><span>Off-Task / Disruptive</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Unprepared / Posture</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Low Engagement</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+                </div>
+            </div>
         </div>
         <div class="chart-box">
-            <h3>Deductions by Day of Week (<span class="current-period-label"></span>)</h3>
-            <div id="dayCharts"></div>
+            <h3>Deductions by Day of Week (<span class="current-period-label">Period 8</span>)</h3>
+            <div id="dayCharts">
+                <div class="bar-row">
+                    <div class="bar-label"><span>Mon</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Tue</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Wed</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Thu</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
+                </div>
+            
+                <div class="bar-row">
+                    <div class="bar-label"><span>Fri</span><span>0</span></div>
+                    <div class="bar-track"><div class="bar-fill day-fill" style="width:0%"></div></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- MASTER VIEW -->
     <div id="masterView" class="view-section">
-        <div class="master-list" id="masterList"></div>
+        <div class="master-list" id="masterList"><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Abra <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Ana <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Averie <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Azi <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Charlee <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>De'mia <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Delaney <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Forever <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Hasan <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Hayley <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>J. C. <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Jace <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Jaceon <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Jocelyn <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Kayleigh <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Lee <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Lily <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Louie <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Mackenzie <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Mika <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Sanchez <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div><div class="list-item">
+                    <div class="list-item-header">
+                        <span>Savanna <small style="color:var(--text-muted)">(Present)</small></span>
+                        <span class="ib-score">IB: 8</span>
+                    </div>
+                    <div class="log-details">
+                        Deductions (0): None<br>
+                        
+                    </div>
+                </div></div>
         
         <div class="action-container">
-            <div class="action-section-title">Save & Restore Complete App State (All Periods)</div>
+            <div class="action-section-title">Save &amp; Restore Complete App State (All Periods)</div>
             <div class="export-group">
                 <button class="action-btn btn-save-html" onclick="saveStateToHTMLFile()">💾 Save Self-Contained .HTML</button>
                 <button class="action-btn btn-copy" onclick="exportStateJSON()">Export Backup (.json)</button>
@@ -737,7 +1133,7 @@
                 <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importStateJSON(event)">
             </div>
 
-            <div class="action-section-title" style="margin-top:8px;">Export Current Period (<span class="current-period-label"></span>)</div>
+            <div class="action-section-title" style="margin-top:8px;">Export Current Period (<span class="current-period-label">Period 8</span>)</div>
             <div class="export-group">
                 <button class="action-btn btn-csv" onclick="exportCSV()">Download CSV</button>
                 <button class="action-btn btn-md" onclick="exportMD()">Download .MD</button>
@@ -751,11 +1147,11 @@
     <!-- STUDENT ACTION MODAL -->
     <div id="actionModal" class="modal-overlay" onclick="handleOverlayClick(event, 'actionModal')">
         <div class="modal-content">
-            <h3 id="modalStudentName" class="modal-title">Student Name</h3>
+            <h3 id="modalStudentName" class="modal-title">Jaceon</h3>
             
             <div class="section-label">Daily Attendance</div>
             <div class="attendance-group">
-                <button id="attPresent" class="att-btn present" onclick="setAttendance('Present')">Present</button>
+                <button id="attPresent" class="att-btn present active" onclick="setAttendance('Present')">Present</button>
                 <button id="attTardy" class="att-btn tardy" onclick="setAttendance('Tardy')">Tardy</button>
                 <button id="attAbsent" class="att-btn absent" onclick="setAttendance('Absent')">Absent</button>
             </div>
@@ -773,7 +1169,7 @@
             </div>
 
             <div class="modal-footer">
-                <button id="undoBtn" class="reason-btn btn-undo" onclick="undoLast()">Undo Last</button>
+                <button id="undoBtn" class="reason-btn btn-undo" onclick="undoLast()" disabled="">Undo Last</button>
                 <button class="reason-btn btn-cancel" onclick="closeModal('actionModal')">Close</button>
             </div>
         </div>
@@ -782,7 +1178,7 @@
     <!-- PERIOD / ROSTER MANAGEMENT MODAL -->
     <div id="periodModal" class="modal-overlay" onclick="handleOverlayClick(event, 'periodModal')">
         <div class="modal-content">
-            <h3 id="periodModalTitle" class="modal-title">Manage Period</h3>
+            <h3 id="periodModalTitle" class="modal-title">Edit Period 1</h3>
             
             <div class="section-label">Period Name</div>
             <input type="text" id="periodNameInput" class="input-field" placeholder="e.g., Period 8 (7th Choir)">
@@ -791,17 +1187,687 @@
             <textarea id="periodRosterInput" class="textarea-field" placeholder="Enter student names, one per line..."></textarea>
 
             <div class="modal-footer">
-                <button id="deletePeriodBtn" class="reason-btn" style="background:var(--danger-color); color:#fff; flex:0.8;" onclick="deleteCurrentPeriod()">Delete</button>
+                <button id="deletePeriodBtn" class="reason-btn" style="background: var(--danger-color); color: rgb(255, 255, 255); flex: 0.8 1 0%; display: block;" onclick="deleteCurrentPeriod()">Delete</button>
                 <button class="reason-btn btn-cancel" onclick="closeModal('periodModal')">Cancel</button>
                 <button class="reason-btn" style="background:var(--success-color); color:#000; flex:1;" onclick="savePeriodSettings()">Save</button>
             </div>
         </div>
     </div>
 
-    <div id="toast" class="toast">Saved!</div>
+    <div id="toast" class="toast" style="display: none;">Period saved!</div>
 
     <!-- EMBEDDED STATE ANCHOR: Holds full state when you click "Save App File (.html)" -->
-    <script id="embedded-app-state" type="application/json">null</script>
+    <script id="embedded-app-state" type="application/json">{
+  "activePeriodId": "p_1791984501281",
+  "periods": [
+    {
+      "id": "p1",
+      "name": "Period 1",
+      "students": [
+        null,
+        {
+          "id": "7_1791984826280",
+          "name": "Kaydence",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "6_1791984826280",
+          "name": "Easton",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "8_1791984826280",
+          "name": "Liam",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+          "id": "5_1791984826280",
+          "name": "Ja'veah",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "4_1791984826280",
+          "name": "Vivian",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "3_1791984826280",
+          "name": "Anahys",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+          "id": "0_1791984826280",
+          "name": "Layla",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "1_1791984826280",
+          "name": "London",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "2_1791984826280",
+          "name": "Mischalay",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null
+      ]
+    },
+    {
+      "id": "p_1791984464205",
+      "name": "Period 3",
+      "students": [
+        {
+          "id": "6_1791984475126",
+          "name": "Tristan",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "11_1791984475126",
+          "name": "Prince",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "9_1791984475126",
+          "name": "Keegan",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "0_1791984475126",
+          "name": "Jadiel",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "5_1791984475126",
+          "name": "Londyn C.",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "3_1791984475126",
+          "name": "Lala",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "8_1791984475126",
+          "name": "Lila",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "13_1791984475126",
+          "name": "Londyn S.",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "1_1791984475126",
+          "name": "Aubrielle",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "2_1791984475126",
+          "name": "Emi",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "7_1791984475126",
+          "name": "Violet",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "12_1791984475126",
+          "name": "Bradley",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "4_1791984475126",
+          "name": "Dre",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "10_1791984475126",
+          "name": "Jordan",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "p_1791984492823",
+      "name": "IB Seminar",
+      "students": [
+        {
+          "id": "1_1791984642304",
+          "name": "Jayla",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "5_1791984642304",
+          "name": "Lala",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "0_1791984642304",
+          "name": "Jadiel",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "8_1791984642304",
+          "name": "Copeland",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "9_1791984642304",
+          "name": "Brock",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "11_1791984642304",
+          "name": "Mason",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "7_1791984642304",
+          "name": "Kayson",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "18_1791984642304",
+          "name": "Bryleigh",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "13_1791984642304",
+          "name": "Aiden",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "12_1791984642304",
+          "name": "Egypt",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "16_1791984642304",
+          "name": "Jackson",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "10_1791984642304",
+          "name": "Lila",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "2_1791984642304",
+          "name": "Corbin",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "4_1791984642304",
+          "name": "Sydney",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "6_1791984642304",
+          "name": "Dre",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "20_1791984642304",
+          "name": "Joseph",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "14_1791984642304",
+          "name": "Jose",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "15_1791984642304",
+          "name": "Ava",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "3_1791984642304",
+          "name": "Violet",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "21_1791984642304",
+          "name": "Amari",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "19_1791984642304",
+          "name": "William",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "17_1791984642304",
+          "name": "Bradley",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "22_1791984642304",
+          "name": "Dalton",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        }
+      ]
+    },
+    {
+      "id": "p_1791984496436",
+      "name": "Period 5",
+      "students": [
+        null,
+        null,
+        {
+          "id": "5_1791984744173",
+          "name": "Brysan",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "9_1791984744173",
+          "name": "Jax",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "0_1791984744173",
+          "name": "Brooklyn",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "8_1791984744173",
+          "name": "Cora",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "15_1791984744173",
+          "name": "Ry'Nia",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        null,
+        null,
+        null,
+        {
+          "id": "6_1791984744173",
+          "name": "Amour",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "7_1791984744173",
+          "name": "Daisy",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "4_1791984744173",
+          "name": "Kennedy",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "11_1791984744173",
+          "name": "Korrina",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "10_1791984744173",
+          "name": "Kee'Yauni",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "12_1791984744173",
+          "name": "Jayce",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "14_1791984744173",
+          "name": "Labrandyn",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "16_1791984744173",
+          "name": "Taniah",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "2_1791984744173",
+          "name": "Margo",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "3_1791984744173",
+          "name": "Evelyn",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "1_1791984744173",
+          "name": "Shar",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "13_1791984744173",
+          "name": "Adi",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        }
+      ]
+    },
+    {
+      "id": "p_1791984501281",
+      "name": "Period 8",
+      "students": [
+        {
+          "id": "21_1791984501281",
+          "name": "Lily",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "7_1791984501281",
+          "name": "Ana",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "15_1791984501281",
+          "name": "Jocelyn",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "19_1791984501281",
+          "name": "Mackenzie",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "20_1791984501281",
+          "name": "Forever",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "10_1791984501281",
+          "name": "Azi",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "3_1791984501281",
+          "name": "Delaney",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "11_1791984501281",
+          "name": "Louie",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "17_1791984501281",
+          "name": "Hasan",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "1_1791984501281",
+          "name": "J. C.",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "5_1791984501281",
+          "name": "Lee",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "6_1791984501281",
+          "name": "Sanchez",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "12_1791984501281",
+          "name": "Jace",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "9_1791984501281",
+          "name": "Jaceon",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        null,
+        {
+          "id": "0_1791984501281",
+          "name": "Mika",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "4_1791984501281",
+          "name": "Charlee",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "16_1791984501281",
+          "name": "Hayley",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "14_1791984501281",
+          "name": "Abra",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "18_1791984501281",
+          "name": "De'mia",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "13_1791984501281",
+          "name": "Kayleigh",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "2_1791984501281",
+          "name": "Averie",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        },
+        {
+          "id": "8_1791984501281",
+          "name": "Savanna",
+          "attendance": "Present",
+          "history": [],
+          "kudos": []
+        }
+      ]
+    }
+  ],
+  "lastSaved": 1791985292149
+}</script>
 
     <script>
         const PERIOD_8_ROSTER = [
@@ -1561,5 +2627,6 @@
         renderPeriodBar();
         renderPodium();
     </script>
-</body>
-</html>
+
+
+</body></html>
